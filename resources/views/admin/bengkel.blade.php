@@ -73,6 +73,11 @@
                             rows="3"></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="alamat">Keterangan</label>
+                        <textarea name="keterangan" required class="form-control" placeholder="Tulis keterangan ..." id="keterangan"
+                            rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="number-input">Nomor Hp</label>
                         <input type="text" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp">
                     </div>

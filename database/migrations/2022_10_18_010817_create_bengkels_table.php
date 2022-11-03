@@ -18,6 +18,7 @@ class CreateBengkelsTable extends Migration
             $table->string('nama_bengkel');
             $table->string('nama_pemilik');
             $table->text('alamat');
+            $table->text('keterangan')->nullable();
             $table->string('nomor_hp');
             $table->string('longitude');
             $table->string('latitude');

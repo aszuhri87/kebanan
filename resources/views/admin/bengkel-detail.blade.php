@@ -36,6 +36,10 @@
                         <td scope="col">{{$bengkel->alamat}}</td>
                     </tr>
                     <tr>
+                        <th scope="col">Keterangan</th>
+                        <td scope="col">{{$bengkel->keterangan}}</td>
+                    </tr>
+                    <tr>
                         <th scope="col">Nomor Hp</th>
                         <td scope="col">{{$bengkel->nomor_hp}}</td>
                     </tr>
@@ -132,6 +136,11 @@
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <textarea name="alamat" required class="form-control" placeholder="Tulis alamat lengkap ..." id="alamat"
+                            rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Keterangan</label>
+                        <textarea name="keterangan" required class="form-control" placeholder="Tulis keterangan ..." id="keterangan"
                             rows="3"></textarea>
                     </div>
                     <div class="form-group">
@@ -253,6 +262,7 @@ $(document).ready(function() {
     });
 
     $('#form-edit').find('textarea[name="alamat"]').val(data_unit.alamat);
+    $('#form-edit').find('textarea[name="keterangan"]').val(data_unit.keterangan);
 
     $('.btn-simpan').click(function() {
         $.blockUI({

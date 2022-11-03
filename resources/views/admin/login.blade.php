@@ -19,8 +19,7 @@
         <div class="d-flex justify-content-center align-items-center" style="width: 100vw; height: 100vh;">
             <div class="" width="400px">
                 <center>
-                    <img src="{{asset('logo/logo.png')}}" class="mb-4" width="250px" alt="">
-                    <h1 class="text-success">KEBANAN</h1>
+                    <img src="{{asset('images/logo-kebanan.svg')}}" width="250px" alt="">
                 </center>
                 <div class="card m-3">
                     <div class="card-body bg-light" style="width:320px">

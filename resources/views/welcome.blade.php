@@ -1,48 +1,374 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-        <title>Kebanan</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kebanan - Solusi Permasalahan Ban Anda</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('images/pin.svg')}}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<body>
+    <!-- header -->
+    <div class="header">
+        <nav class="container d-flex justify-content-between align-items-baseline">
+            <div>
+                <a href="#"><img src="{{asset('images/logo-kebanan.svg')}}" alt="Kebanan Logo" width="163px" height="81px" /></a>
+            </div>
+            <div>
+                <ul class="d-flex header-navigation">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#googleMap">Solution</a></li>
+                    <li><a href="#solution">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
+    <!-- poster -->
+    <div class="container mb-4 poster">
+        <img src="images/banner.png" alt="Poster" width="100%" />
+    </div>
 
-        <!-- Styles -->
-        <style>
-            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.dark\:text-gray-500{--tw-text-opacity:1;color:#6b7280;color:rgba(107,114,128,var(--tw-text-opacity))}}
-        </style>
+    <div class="container mb-4 poster-mobile">
+        <img src="images/banner-mobile.png" alt="Poster" width="100%" />
+    </div>
 
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-        </style>
-    </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+    <!-- about -->
+    <div id="solution" class="container d-flex justify-content-between align-items-center mb-4 about-container">
+        <div class="col">
+            <img class="about-image" src="images/Illustration1.svg" alt="Ilustrasi Aplikasi" width="80%" />
+        </div>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
+        <div class="col">
+            <h1 class="about-text_green">TENTANG KEBANAN</h1>
+            <h2 class="about-text_black">Solusi Permasalahan Ban Anda</h2>
+            <p class="about-text_gray">
+                <span class="about-text_green">KEBANAN</span> membantu anda dalam mencari bengkel tambal ban di sekitar
+                anda ketika ban anda bocor, cukup masukan informasi mengenai kendaraan anda, kemudian cari lokasi
+                bengkel tambal ban terdekat,
+                hubungi bengkel. Kenapa anda harus menggunakan KEBANAN:
+            </p>
+            <ul class="about-text_gray">
+                <li>
+                    <img class="about-icon" src="images/checklist.svg" alt="Icon 1" width="20px" />
+                    <span>Pelayanan Cepat</span>
+                </li>
+                <li>
+                    <img class="about-icon" src="images/checklist.svg" alt="Icon 1" width="20px" />
+                    <span>Mudah & Terpercaya</span>
+                </li>
+                <li>
+                    <img class="about-icon" src="images/checklist.svg" alt="Icon 1" width="20px" />
+                    <span>Harga Terjangkau</span>
+                </li>
+            </ul>
+            <a class="btn btn-success button-green" href="#googleMap">Pesan Sekarang</a>
+        </div>
+    </div>
+
+    <!-- map -->
+    <div class="map-container">
+        <div id="googleMap" class="map-style"></div>
+        <!-- find-service -->
+        <div class="find-service">
+            <div class="find-service_container">
+                <p class="find-service_header">Find Your Service Here</p>
+                <div class="d-flex justify-content-between mb-4">
+                    <div class="d-flex find-service_search">
+                        <img src="images/location.svg" alt="Search Location" />
+                        <input id="pac-input" type="text" placeholder="Search Location"
+                            class="find-service_input controls" />
+                    </div>
+                    <button class="find-service_button" onclick="myLocation()"><img src="images/center.svg"
+                            alt="" /></button>
                 </div>
-            @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <h1 class="text-success"> Kebanan </h1>
+                <div class="row">
+                    <div class="col d-flex justify-content-between">
+                        <div class="d-flex find-service_type">
+                            <img src="images/type.svg" alt="Type Kendaraan" />
+                            <select id="tipeKendaraan" class="form-select">
+                                <option value="">Tipe Kendaraan</option>
+                                <option value="motor">Motor</option>
+                                <option value="mobil">Mobil</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex find-service_type">
+                            <img src="images/tire.svg" alt="Type Ban" />
+                            <select id="tipeBan" class="form-select">
+                                <option value="">Tipe Ban</option>
+                                <option value="biasa">Biasa</option>
+                                <option value="tubles">Tubles</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex find-service_type">
+                            <img src="images/service.svg" alt="Jenis Service" />
+                            <select id="jenisService" class="form-select">
+                                <option value="">Jenis Service</option>
+                                <option value="antar">Antar Jemput</option>
+                                <option value="biasa">Biasa</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="searchBengkel()" class="btn btn-success button-green mx-auto mt-5">Cari Bengkel</button>
+            </div>
+        </div>
+
+        <!-- find service mobile -->
+        <div class="find-service-mobile">
+            <div class="find-service_container-mobile">
+                <p class="find-service_header-mobile">Find Your Service Here</p>
+
+                <div class="row d-flex justify-content-between gap-2">
+                    <div class="d-flex align-items-center find-service_type-mobile">
+                        <div class="d-flex align-items-center">
+                            <img src="images/location.svg" alt="Search Location" />
+                            <input id="pac-input-mobile" type="text" placeholder="Search Location"
+                                class="find-service_input-mobile controls" />
+                        </div>
+                        <img src="images/center.svg" alt="Find Location" class="find-service_button-mobile"
+                            onclick="myLocation()" />
+                    </div>
+
+                    <div class="d-flex find-service_type-mobile">
+                        <img src="images/type.svg" alt="Type Kendaraan" />
+                        <select id="tipeKendaraanMobile" class="form-select form-select-sm">
+                            <option value="">Tipe Kendaraan</option>
+                            <option value="motor">Motor</option>
+                            <option value="mobil">Mobil</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex find-service_type-mobile">
+                        <img src="images/tire.svg" alt="Type Ban" />
+                        <select id="tipeBanMobile" class="form-select form-select-sm">
+                            <option value="">Tipe Ban</option>
+                            <option value="biasa">Biasa</option>
+                            <option value="tubles">Tubles</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex find-service_type-mobile">
+                        <img src="images/service.svg" alt="Jenis Service" />
+                        <select id="jenisServiceMobile" class="form-select form-select-sm">
+                            <option value="">Jenis Service</option>
+                            <option value="antar">Antar Jemput</option>
+                            <option value="biasa">Biasa</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="searchBengkel()"
+                    class="button-green d-flex justify-content-between align-items-center float-end mt-3"><img
+                        src="images/find.svg" />Cari Tambal Ban</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- cta -->
+    <div class="d-flex justify-content-center align-items-center mb-4 cta-container pt-4 pb-4">
+        <div class="col d-flex justify-content-center">
+            <img class="cta-image" src="images/Illustration2.svg" alt="Ilustrasi Aplikasi" width="80%" />
+        </div>
+
+        <div class="col">
+            <h1 class="cta-header">Belum Terdaftar di KEBANAN?</h1>
+            <p class="cta-text">Start working with Tailwind CSS that can provide everything you need to generate
+                awareness, drive traffic, connect.</p>
+            <button class="button-white">Daftar Sekarang</button>
+        </div>
+    </div>
+
+    <!-- faq -->
+    <div id="about" class="container mb-4 faq-container">
+        <h1 class="faq-header">Yang sering ditanyakan</h1>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Apa yang harus dilakukan ketika dalam radius tertentu tidak ada bengkel?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi facilis praesentium esse, odio
+                        explicabo incidunt, rerum nam doloremque sapiente aspernatur error neque consectetur possimus
+                        dolorum ratione ipsum tempora fuga
+                        autem?
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Apa yang harus dilakukan ketika dalam radius tertentu tidak ada bengkel?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi facilis praesentium esse, odio
+                        explicabo incidunt, rerum nam doloremque sapiente aspernatur error neque consectetur possimus
+                        dolorum ratione ipsum tempora fuga
+                        autem?
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Berapa lama waktu yang dibutuhkan untuk menambal ban?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae sed necessitatibus nam
+                        sapiente, est veniam non accusantium odit. Animi ad nostrum voluptas voluptatibus omnis harum
+                        sed aspernatur veniam numquam corrupti?
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Bagaimana jika ada tindak penipuan yang dilakukan oleh pihak bengkel?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae sed necessitatibus nam
+                        sapiente, est veniam non accusantium odit. Animi ad nostrum voluptas voluptatibus omnis harum
+                        sed aspernatur veniam numquam corrupti?
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Apa yang harus dilakukan ketika pihak bengkel tidak ada kabar?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae sed necessitatibus nam
+                        sapiente, est veniam non accusantium odit. Animi ad nostrum voluptas voluptatibus omnis harum
+                        sed aspernatur veniam numquam corrupti?
+                    </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+
+    <!-- questions -->
+    <div id="contact" class="text-center questions-container mb-4">
+        <h1 class="questions-header">Ada pertanyaan tentang Kebanan?, Hubungi kami!</h1>
+        <p class="questions-text">Start working with Tailwin CSS that can provide everything you need to generate
+            awareness, drive traffic, connect</p>
+        <button class="button-white mx-auto questions-button">Hubungi Sekarang</button>
+    </div>
+
+    <!-- footer -->
+    <div class="container d-flex align-items-baseline mb-4 gap-5 footer">
+        <div class="col">
+            <img src="images/logo-kebanan.svg" alt="Kebanan Logo" width="150px" />
+            <p class="footer-text_black">We guarantee superior service and quality on every product you purchase, and we
+                will assist you in becoming more successful.</p>
+        </div>
+
+        <div class="col">
+            <h1 class="footer-header_black">Link</h1>
+            <ul class="footer-text_gray">
+                <li><a href="#solution">Tentang Kami</a></li>
+                <li><a href="#contact">Hubungi Kami</a></li>
+                <li><a href="#">Syarat & Ketentuan</a></li>
+            </ul>
+        </div>
+
+        <div class="col">
+            <h1 class="footer-header_black">Info Kontak</h1>
+            <p class="footer-text_gray">Jl. Siliwangi No.32G, Area Sawah, Nogotirto, Kec. Gamping, Kabupaten Sleman,
+                Daerah Istimewa Yogyakarta 55592</p>
+            <p class="footer-text_gray">info@kebanan.id</p>
+        </div>
+    </div>
+
+    <!-- copyright -->
+    <div class="copyright">
+        <footer class="container">
+            <p>KEBANAN &#169; 2022 All Right Reserved</p>
+        </footer>
+    </div>
+
+    <!-- navbar mobile -->
+    <nav class="navbar bg-light fixed-bottom navbar-mobile">
+        <div class="container-fluid">
+            <a href="#"><img src="images/logo-kebanan.svg" alt="Kebanan Logo" class="navbar-brand" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <a href="#"><img src="images/logo-kebanan.svg" alt="Kebanan Logo" class="navbar-brand" /></a>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#googleMap">Solution</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#solution">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY&libraries=places&callback=myMap">
+    </script>
+</body>
+
 </html>
+
+<!-- API from office : AIzaSyAGE_qMyu1KZXZga00ynayQTxP2wm1kllg -->
+<!-- API free : AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY -->

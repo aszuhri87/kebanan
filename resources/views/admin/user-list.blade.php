@@ -5,7 +5,7 @@
 <div class="card w-100 mb-5">
     <div class="card-body">
         <div class="d-flex justify-content-between mb-3">
-            <h5>Daftar User</h5>
+            <h5>Daftar Admin</h5>
             <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
                     Tambah
@@ -62,7 +62,7 @@
             <form action="{{url('admin/user/')}}" method="post">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Tambah User</h5>
+                    <h5 class="modal-title" id="addModalLabel">Tambah Admin</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -23,10 +23,10 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="{{url('/')}}">
-                <img src="{{asset('logo/logo.png')}}" class="" width="100px" alt="">
+                <img src="{{asset('images/logo-kebanan.svg')}}" class="" width="100px" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,11 +37,11 @@
                         <a class="nav-link" href="{{url('admin/bengkel')}}">Bengkel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('admin/user')}}">User</a>
+                        <a class="nav-link" href="{{url('admin/user')}}">Admin</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Hi, {{Auth::guard('admin')->user()->nama}}
+                            Hi, {{(Auth::guard('admin')->user()->nama)}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-radius: 0%; top: 45px;">
                             <a class="dropdown-item" href="{{url('admin/logout')}}">Logout</a>

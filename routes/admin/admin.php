@@ -42,8 +42,4 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
 
         return redirect('/admin/login');
     });
-
-    // Route::get('/beranda', function () {
-    //     return view('admin/bengkel');
-    // });
 });

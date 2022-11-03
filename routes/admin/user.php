@@ -27,8 +27,8 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
 
     Route::post('user', function (Request $request) {
         \App\Models\Admin::create([
-            'nama' => $request->nama_user,
-            'email' => $request->nama_pemilik,
+            'nama' => $request->nama,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
@@ -47,8 +47,8 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
     Route::post('user/update/{id}', function (Request $request, $id) {
         $user = \App\Models\Admin::find($id);
         $user->update([
-            'nama' => $request->nama_user,
-            'email' => $request->nama_pemilik,
+            'nama' => $request->nama,
+            'email' => $request->email,
             'password' => Hash::make($request->password) ? Hash::make($request->password) : $user->password,
         ]);
 

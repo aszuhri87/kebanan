@@ -16,7 +16,7 @@ class GuestHandling
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            return redirect('/dashboard');
+            return redirect('/');
         } else {
             return $next($request);
         }

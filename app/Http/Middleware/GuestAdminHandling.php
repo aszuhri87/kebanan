@@ -16,7 +16,7 @@ class GuestAdminHandling
     public function handle(Request $request, Closure $next)
     {
         if (Auth::guard('admin')->check()) {
-            return redirect('/admin/student');
+            return redirect('/admin/bengkel');
         } else {
             return $next($request);
         }

@@ -4,14 +4,10 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
     <a href="{{url('admin/user')}}" class="btn btn-danger m-0">Kembali</a>
     <div>
-        @if (Auth::guard('admin')->user()->nama == 'Admin' || Auth::guard('admin')->user()->id == $user->id)
         <button type="button" class="btn edit-btn btn-primary" data-toggle="modal" data-target="#editModal">
             Edit
         </button>
-        @endif
-        @if (Auth::guard('admin')->user()->nama == 'Admin')
-            <a class="btn btn-danger m-0" href="{{url('/admin/user/delete/'.$user->id)}}" onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
-        @endif
+        <a class="btn btn-danger m-0" href="{{url('/admin/user/delete/'.$user->id)}}" onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
     </div>
 </div>
 <div class="print-place">

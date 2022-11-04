@@ -7,13 +7,14 @@
         <button type="button" class="btn edit-btn btn-primary" data-toggle="modal" data-target="#editModal">
             Edit
         </button>
-        <a class="btn btn-danger m-0" href="{{url('/admin/user/delete/'.$user->id)}}" onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
+        <a class="btn btn-danger m-0" href="{{url('/admin/user/delete/'.$user->id)}}"
+            onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
     </div>
 </div>
 <div class="print-place">
     <div class="card w-100 mb-5">
         <div class="card-body">
-            <h5> Detail User  </h5>
+            <h5> Detail User </h5>
             <table class="table mb-0 table-bordered" width="100%">
                 <tbody>
                     <tr>
@@ -72,7 +73,7 @@
 @push('script')
 <script>
     $(document).ready(function () {
-        var data_unit = <?php echo json_encode($user)?>;
+        var data_unit = < ? php echo json_encode($user) ? > ;
 
         $('.btn-simpan').click(function () {
             $.blockUI({

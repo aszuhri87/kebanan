@@ -29,22 +29,20 @@
                     <td>{{$item->nama}}</td>
                     <td class="text-center">{{$item->email}}</td>
                     <td class="text-center">
-                        <a class="btn btn-success m-0"
-                            href="{{url('/admin/user/'.$item->id)}}">Detail</a>
+                        <a class="btn btn-success m-0" href="{{url('/admin/user/'.$item->id)}}">Detail</a>
                     </td>
                 </tr>
                 @else
-                    @if ($item->nama != 'Admin')
-                    <tr>
-                        <th scope="row" class="text-center">{{$index + 1}}</th>
-                        <td>{{$item->nama}}</td>
-                        <td class="text-center">{{$item->email}}</td>
-                        <td class="text-center">
-                            <a class="btn btn-success m-0"
-                                href="{{url('/admin/user/'.$item->id)}}">Detail</a>
-                        </td>
-                    </tr>
-                    @endif
+                @if ($item->nama != 'Admin')
+                <tr>
+                    <th scope="row" class="text-center">{{$index + 1}}</th>
+                    <td>{{$item->nama}}</td>
+                    <td class="text-center">{{$item->email}}</td>
+                    <td class="text-center">
+                        <a class="btn btn-success m-0" href="{{url('/admin/user/'.$item->id)}}">Detail</a>
+                    </td>
+                </tr>
+                @endif
                 @endif
                 @endforeach
             </tbody>
@@ -74,8 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone_number">Email</label>
-                        <input type="email" required class="form-control" placeholder="Email" name="email"
-                            id="email">
+                        <input type="email" required class="form-control" placeholder="Email" name="email" id="email">
                     </div>
                     <div class="form-group">
                         <label for="phone_number">Password</label>

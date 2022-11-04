@@ -17,6 +17,7 @@ class Bengkel extends Model
         'nama_bengkel',
         'nama_pemilik',
         'alamat',
+        'keterangan',
         'nomor_hp',
         'longitude',
         'latitude',

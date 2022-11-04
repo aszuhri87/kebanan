@@ -36,6 +36,10 @@
                         <td scope="col">{{$bengkel->alamat}}</td>
                     </tr>
                     <tr>
+                        <th scope="col">Keterangan</th>
+                        <td scope="col">{{$bengkel->keterangan}}</td>
+                    </tr>
+                    <tr>
                         <th scope="col">Nomor Hp</th>
                         <td scope="col">{{$bengkel->nomor_hp}}</td>
                     </tr>
@@ -135,6 +139,11 @@
                             rows="3"></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="alamat">Keterangan</label>
+                        <textarea name="keterangan" required class="form-control" placeholder="Tulis keterangan ..." id="keterangan"
+                            rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="number-input">Nomor Hp</label>
                         <input type="text" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp" value="{{$bengkel->nomor_hp}}">
                     </div>
@@ -189,90 +198,89 @@
 
 @push('script')
 <script>
-var data_unit = <?php echo json_encode($bengkel)?>;
+    var data_unit = <?php echo json_encode($bengkel)?>;
 
-function initialize() {
-    const myLatlng = { lat: parseFloat(data_unit.latitude), lng: parseFloat(data_unit.longitude) };
+    function initialize() {
+        const myLatlng = { lat: parseFloat(data_unit.latitude), lng: parseFloat(data_unit.longitude) };
 
-    const myOptions = {
-      zoom: 10,
-      center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      disableDefaultUI: true
+        const myOptions = {
+          zoom: 10,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true
+        };
+
+        const map = new google.maps.Map(document.getElementById("map"), myOptions);
+        const map2 = new google.maps.Map(document.getElementById("map2"), myOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            draggable: true,
+            clickable: true
+        });
+
+        var marker2 = new google.maps.Marker({
+           position: myLatlng,
+           map: map2,
+           draggable: true,
+           clickable: true
+        });
+
+        let node = {};
+
+        map2.addListener("click", (mapsMouseEvent) => {
+            if (marker2 && marker2.setMap) {
+                marker2.setMap(null);
+            }
+
+            marker2 = new google.maps.Marker({
+              position: mapsMouseEvent.latLng,
+              map: map2,
+              animation: google.maps.Animation.DROP,
+            });
+
+            node = mapsMouseEvent.latLng.toJSON()
+
+            $('#latitude').val(node.lat);
+            $('#longitude').val(node.lng);
+
+            marker2.open(map2);
+        });
+
+        map.setCenter(myLatlng);
+        map2.setCenter(myLatlng);
     };
 
-    const map = new google.maps.Map(document.getElementById("map"), myOptions);
-    const map2 = new google.maps.Map(document.getElementById("map2"), myOptions);
+    $(document).ready(function() {
+        $('.dropify').dropify();
 
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        draggable: true,
-        clickable: true
-
-     });
-
-     var marker2 = new google.maps.Marker({
-        position: myLatlng,
-        map: map2,
-        draggable: true,
-        clickable: true
-
-     });
-
-    let node = {};
-    map2.addListener("click", (mapsMouseEvent) => {
-
-        if (marker2 && marker2.setMap) {
-            marker2.setMap(null);
-        }
-
-        marker2 = new google.maps.Marker({
-          position: mapsMouseEvent.latLng,
-          map: map2,
-          animation: google.maps.Animation.DROP,
+        $('.tidak-berubah').click(function () {
+            return false;
         });
 
-        node = mapsMouseEvent.latLng.toJSON()
+        $('#form-edit').find('textarea[name="alamat"]').val(data_unit.alamat);
+        $('#form-edit').find('textarea[name="keterangan"]').val(data_unit.keterangan);
 
-        $('#latitude').val(node.lat);
-        $('#longitude').val(node.lng);
-
-        marker2.open(map2);
-    });
-
-    map.setCenter(myLatlng);
-    map2.setCenter(myLatlng);
-};
-
-$(document).ready(function() {
-    $('.dropify').dropify();
-
-    $('.tidak-berubah').click(function () {
-        return false;
-    });
-
-    $('#form-edit').find('textarea[name="alamat"]').val(data_unit.alamat);
-
-    $('.btn-simpan').click(function() {
-        $.blockUI({
-            message:
-            '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Mohon Tunggu...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
-            css: {
-            backgroundColor: 'transparent',
-            color: '#fff',
-            border: '0'
-            },
-            overlayCSS: {
-            opacity: 0.5
-            },
-            timeout: 1000,
-            baseZ: 2000
+        $('.btn-simpan').click(function() {
+            $.blockUI({
+                message:
+                '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Mohon Tunggu...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
+                css: {
+                backgroundColor: 'transparent',
+                color: '#fff',
+                border: '0'
+                },
+                overlayCSS: {
+                opacity: 0.5
+                },
+                timeout: 1000,
+                baseZ: 2000
+            });
         });
     });
-});
-
 </script>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize"></script>
 
 @endpush

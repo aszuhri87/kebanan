@@ -1,12 +1,13 @@
 @extends('admin.layout')
 
 @push('style')
-    <style>
-        img {
-            width: 50%;
-            height: 50%;
-        }
-    </style>
+<style>
+    img {
+        width: 50%;
+        height: 50%;
+    }
+
+</style>
 @endpush
 
 @section('content')
@@ -14,13 +15,14 @@
     <a href="{{url('admin/bengkel')}}" class="btn btn-danger m-0">Kembali</a>
     <div>
 
-        <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal{{$bengkel->id}}">
+        <button type="button" class="btn btn-primary edit-btn" data-toggle="modal"
+            data-target="#editModal{{$bengkel->id}}">
             Edit
         </button>
     </div>
 </div>
 <div class="print-place">
-    <div class="card w-100 mb-5" >
+    <div class="card w-100 mb-5">
         <div class="card-body">
             <table class="table mb-0 table-bordered" width="100%">
                 <tbody>
@@ -49,14 +51,18 @@
                     </tr>
                     <tr>
                         <th scope="col">Titik Lokasi</th>
-                        <td scope="col"> <div id="map"></div></td>
+                        <td scope="col">
+                            <div id="map"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="col">Terima Tubles</th>
                         <td scope="col">
                             <div class="form-group mt-3">
-                                <input type="checkbox" name="terima_tubles" class="tidak-berubah" {{  ($bengkel->terima_tubles == 1 ? ' checked' : '') }}>
-                                <label for="terima_tubles" for="terima_tubles">{{  ($bengkel->terima_tubles == 1 ? ' Ya' : ' Tidak') }}</label>
+                                <input type="checkbox" name="terima_tubles" class="tidak-berubah"
+                                    {{  ($bengkel->terima_tubles == 1 ? ' checked' : '') }}>
+                                <label for="terima_tubles"
+                                    for="terima_tubles">{{  ($bengkel->terima_tubles == 1 ? ' Ya' : ' Tidak') }}</label>
                             </div>
                         </td>
                     </tr>
@@ -64,8 +70,10 @@
                         <th scope="col">Terima non Tubles</th>
                         <td scope="col">
                             <div class="form-group mt-3">
-                                <input type="checkbox" name="terima_non_tubles" class="tidak-berubah" {{  ($bengkel->terima_non_tubles == 1 ? ' checked' : '') }}>
-                                <label for="terima_non_tubles" for="terima_non_tubles">{{  ($bengkel->terima_non_tubles == 1 ? ' Ya' : ' Tidak') }}</label>
+                                <input type="checkbox" name="terima_non_tubles" class="tidak-berubah"
+                                    {{  ($bengkel->terima_non_tubles == 1 ? ' checked' : '') }}>
+                                <label for="terima_non_tubles"
+                                    for="terima_non_tubles">{{  ($bengkel->terima_non_tubles == 1 ? ' Ya' : ' Tidak') }}</label>
                             </div>
                         </td>
                     </tr>
@@ -73,8 +81,10 @@
                         <th scope="col">Terima Panggilan</th>
                         <td scope="col">
                             <div class="form-group mt-3">
-                                <input type="checkbox" name="terima_panggilan" class="tidak-berubah" {{  ($bengkel->terima_panggilan == 1 ? ' checked' : '') }}>
-                                <label for="terima_panggilan" for="terima_panggilan">{{  ($bengkel->terima_panggilan == 1 ? ' Ya' : ' Tidak') }}</label>
+                                <input type="checkbox" name="terima_panggilan" class="tidak-berubah"
+                                    {{  ($bengkel->terima_panggilan == 1 ? ' checked' : '') }}>
+                                <label for="terima_panggilan"
+                                    for="terima_panggilan">{{  ($bengkel->terima_panggilan == 1 ? ' Ya' : ' Tidak') }}</label>
                             </div>
                         </td>
                     </tr>
@@ -82,8 +92,10 @@
                         <th scope="col">Terima Motor</th>
                         <td scope="col">
                             <div class="form-group mt-3">
-                                <input type="checkbox" name="terima_motor" class="tidak-berubah" {{  ($bengkel->terima_motor == 1 ? ' checked' : '') }}>
-                                <label for="terima_motor" for="terima_motor">{{  ($bengkel->terima_motor == 1 ? ' Ya' : ' Tidak') }}</label>
+                                <input type="checkbox" name="terima_motor" class="tidak-berubah"
+                                    {{  ($bengkel->terima_motor == 1 ? ' checked' : '') }}>
+                                <label for="terima_motor"
+                                    for="terima_motor">{{  ($bengkel->terima_motor == 1 ? ' Ya' : ' Tidak') }}</label>
                             </div>
                         </td>
                     </tr>
@@ -91,8 +103,10 @@
                         <th scope="col">Terima Mobil</th>
                         <td scope="col">
                             <div class="form-group mt-3">
-                                <input type="checkbox" name="terima_mobil" class="tidak-berubah" {{  ($bengkel->terima_mobil == 1 ? ' checked' : '') }}>
-                                <label for="terima_mobil" for="terima_mobil">{{  ($bengkel->terima_mobil == 1 ? ' Ya' : ' Tidak') }}</label>
+                                <input type="checkbox" name="terima_mobil" class="tidak-berubah"
+                                    {{  ($bengkel->terima_mobil == 1 ? ' checked' : '') }}>
+                                <label for="terima_mobil"
+                                    for="terima_mobil">{{  ($bengkel->terima_mobil == 1 ? ' Ya' : ' Tidak') }}</label>
                             </div>
                         </td>
                     </tr>
@@ -100,8 +114,10 @@
                         <th scope="col">Terima Kendaraan Berat</th>
                         <td scope="col">
                             <div class="form-group mt-3">
-                                <input type="checkbox" name="terima_kendaraan_berat" class="tidak-berubah" {{  ($bengkel->terima_kendaraan_berat == 1 ? ' checked' : '') }}>
-                                <label for="terima_kendaraan_berat" for="terima_kendaraan_berat">{{  ($bengkel->terima_kendaraan_berat == 1 ? ' Ya' : ' Tidak') }}</label>
+                                <input type="checkbox" name="terima_kendaraan_berat" class="tidak-berubah"
+                                    {{  ($bengkel->terima_kendaraan_berat == 1 ? ' checked' : '') }}>
+                                <label for="terima_kendaraan_berat"
+                                    for="terima_kendaraan_berat">{{  ($bengkel->terima_kendaraan_berat == 1 ? ' Ya' : ' Tidak') }}</label>
                             </div>
                         </td>
                     </tr>
@@ -116,7 +132,8 @@
 <div class="modal fade" id="editModal{{$bengkel->id}}" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="{{url('admin/bengkel/'.$bengkel->id)}}" id="form-edit" method="post" enctype="multipart/form-data">
+            <form action="{{url('admin/bengkel/'.$bengkel->id)}}" id="form-edit" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="addModalLabel">Edit Bengkel</h5>
@@ -127,32 +144,37 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="number-input">Nama Bengkel</label>
-                        <input type="text" required class="form-control" placeholder="Nama Bengkel" name="nama_bengkel" id="nama_bengkel" value="{{$bengkel->nama_bengkel}}">
+                        <input type="text" required class="form-control" placeholder="Nama Bengkel" name="nama_bengkel"
+                            id="nama_bengkel" value="{{$bengkel->nama_bengkel}}">
                     </div>
                     <div class="form-group">
                         <label for="number-input">Nama Pemilik</label>
-                        <input type="text" required class="form-control" placeholder="Nama Pemilik" name="nama_pemilik" id="nama_pemilik" value="{{$bengkel->nama_pemilik}}">
+                        <input type="text" required class="form-control" placeholder="Nama Pemilik" name="nama_pemilik"
+                            id="nama_pemilik" value="{{$bengkel->nama_pemilik}}">
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea name="alamat" required class="form-control" placeholder="Tulis alamat lengkap ..." id="alamat"
-                            rows="3"></textarea>
+                        <textarea name="alamat" required class="form-control" placeholder="Tulis alamat lengkap ..."
+                            id="alamat" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Keterangan</label>
-                        <textarea name="keterangan" required class="form-control" placeholder="Tulis keterangan ..." id="keterangan"
-                            rows="3"></textarea>
+                        <textarea name="keterangan" required class="form-control" placeholder="Tulis keterangan ..."
+                            id="keterangan" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="number-input">Nomor Hp</label>
-                        <input type="text" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp" value="{{$bengkel->nomor_hp}}">
+                        <input type="text" required class="form-control" placeholder="Nomor Hp" name="nomor_hp"
+                            id="nomor_hp" value="{{$bengkel->nomor_hp}}">
                     </div>
                     <div class="form-group">
                         <div id="map2"></div>
                     </div>
                     <div class="d-flex mt-3">
-                        <input type="text" class="form-control mr-1" placeholder="Latitude" name="latitude" id="latitude" value="{{$bengkel->latitude}}">
-                        <input type="text" class="form-control ml-1" placeholder="Longitude" name="longitude" id="longitude" value="{{$bengkel->longitude}}">
+                        <input type="text" class="form-control mr-1" placeholder="Latitude" name="latitude"
+                            id="latitude" value="{{$bengkel->latitude}}">
+                        <input type="text" class="form-control ml-1" placeholder="Longitude" name="longitude"
+                            id="longitude" value="{{$bengkel->longitude}}">
                     </div>
                     <br>
                     <label for="number-input">Foto Bengkel</label>
@@ -160,28 +182,44 @@
                         <input type="file" name="foto_bengkel" class="dropify">
                     </div>
                     <div class="form-group form-check mt-3">
-                        <input type="hidden" name="terima_tubles" value="{{$bengkel->terima_tubles}}"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value" {{  ($bengkel->terima_tubles == 1 ? ' checked' : '') }}>
+                        <input type="hidden" name="terima_tubles" value="{{$bengkel->terima_tubles}}"><input
+                            type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"
+                            {{  ($bengkel->terima_tubles == 1 ? ' checked' : '') }}>
                         <label for="terima_tubles" class="form-check-label">Terima Tubles</label>
                     </div>
                     <div class="form-group form-check">
-                        <input type="hidden" name="terima_non_tubles" value="{{$bengkel->terima_non_tubles}}"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value" {{  ($bengkel->terima_non_tubles == 1 ? ' checked' : '') }}>
-                        <label for="terima_non_tubles" class="form-check-label" for="terima_non_tubles">Terima non Tubles</label>
+                        <input type="hidden" name="terima_non_tubles" value="{{$bengkel->terima_non_tubles}}"><input
+                            type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"
+                            {{  ($bengkel->terima_non_tubles == 1 ? ' checked' : '') }}>
+                        <label for="terima_non_tubles" class="form-check-label" for="terima_non_tubles">Terima non
+                            Tubles</label>
                     </div>
                     <div class="form-group form-check">
-                        <input type="hidden" name="terima_panggilan" value="{{$bengkel->terima_panggilan}}"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value" {{  ($bengkel->terima_panggilan == 1 ? ' checked' : '') }}>
-                        <label for="terima_panggilan" class="form-check-label" for="terima_panggilan">Terima Panggilan</label>
+                        <input type="hidden" name="terima_panggilan" value="{{$bengkel->terima_panggilan}}"><input
+                            type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"
+                            {{  ($bengkel->terima_panggilan == 1 ? ' checked' : '') }}>
+                        <label for="terima_panggilan" class="form-check-label" for="terima_panggilan">Terima
+                            Panggilan</label>
                     </div>
                     <div class="form-group form-check">
-                        <input type="hidden" name="terima_motor" value="{{$bengkel->terima_motor}}"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value" {{  ($bengkel->terima_motor == 1 ? ' checked' : '') }}>
+                        <input type="hidden" name="terima_motor" value="{{$bengkel->terima_motor}}"><input
+                            type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"
+                            {{  ($bengkel->terima_motor == 1 ? ' checked' : '') }}>
                         <label for="terima_motor" class="form-check-label" for="terima_motor">Terima Motor</label>
                     </div>
                     <div class="form-group form-check">
-                        <input type="hidden" name="terima_mobil" value="{{$bengkel->terima_mobil}}"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value" {{  ($bengkel->terima_mobil == 1 ? ' checked' : '') }}>
+                        <input type="hidden" name="terima_mobil" value="{{$bengkel->terima_mobil}}"><input
+                            type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"
+                            {{  ($bengkel->terima_mobil == 1 ? ' checked' : '') }}>
                         <label for="terima_mobil" class="form-check-label" for="terima_mobil">Terima Mobil</label>
                     </div>
                     <div class="form-group form-check">
-                        <input type="hidden" name="terima_kendaraan_berat" value="{{$bengkel->terima_kendaraan_berat}}"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value" {{  ($bengkel->terima_kendaraan_berat == 1 ? ' checked' : '') }}>
-                        <label for="terima_kendaraan_berat" class="form-check-label" for="terima_kendaraan_berat">Terima Kendaraan Berat</label>
+                        <input type="hidden" name="terima_kendaraan_berat"
+                            value="{{$bengkel->terima_kendaraan_berat}}"><input type="checkbox"
+                            onclick="this.previousSibling.value=1-this.previousSibling.value"
+                            {{  ($bengkel->terima_kendaraan_berat == 1 ? ' checked' : '') }}>
+                        <label for="terima_kendaraan_berat" class="form-check-label" for="terima_kendaraan_berat">Terima
+                            Kendaraan Berat</label>
                     </div>
 
                 </div>
@@ -198,92 +236,95 @@
 
 @push('script')
 <script>
-var data_unit = <?php echo json_encode($bengkel)?>;
+    var data_unit = < ? php echo json_encode($bengkel) ? > ;
 
-function initialize() {
-    const myLatlng = { lat: parseFloat(data_unit.latitude), lng: parseFloat(data_unit.longitude) };
+    function initialize() {
+        const myLatlng = {
+            lat: parseFloat(data_unit.latitude),
+            lng: parseFloat(data_unit.longitude)
+        };
 
-    const myOptions = {
-      zoom: 10,
-      center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      disableDefaultUI: true
+        const myOptions = {
+            zoom: 10,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
+        };
+
+        const map = new google.maps.Map(document.getElementById("map"), myOptions);
+        const map2 = new google.maps.Map(document.getElementById("map2"), myOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            draggable: true,
+            clickable: true
+
+        });
+
+        var marker2 = new google.maps.Marker({
+            position: myLatlng,
+            map: map2,
+            draggable: true,
+            clickable: true
+
+        });
+
+        let node = {};
+        map2.addListener("click", (mapsMouseEvent) => {
+
+            if (marker2 && marker2.setMap) {
+                marker2.setMap(null);
+            }
+
+            marker2 = new google.maps.Marker({
+                position: mapsMouseEvent.latLng,
+                map: map2,
+                animation: google.maps.Animation.DROP,
+            });
+
+            node = mapsMouseEvent.latLng.toJSON()
+
+            $('#latitude').val(node.lat);
+            $('#longitude').val(node.lng);
+
+            marker2.open(map2);
+        });
+
+        map.setCenter(myLatlng);
+        map2.setCenter(myLatlng);
     };
 
-    const map = new google.maps.Map(document.getElementById("map"), myOptions);
-    const map2 = new google.maps.Map(document.getElementById("map2"), myOptions);
+    $(document).ready(function () {
+        $('.dropify').dropify();
 
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        draggable: true,
-        clickable: true
-
-     });
-
-     var marker2 = new google.maps.Marker({
-        position: myLatlng,
-        map: map2,
-        draggable: true,
-        clickable: true
-
-     });
-
-    let node = {};
-    map2.addListener("click", (mapsMouseEvent) => {
-
-        if (marker2 && marker2.setMap) {
-            marker2.setMap(null);
-        }
-
-        marker2 = new google.maps.Marker({
-          position: mapsMouseEvent.latLng,
-          map: map2,
-          animation: google.maps.Animation.DROP,
+        $('.tidak-berubah').click(function () {
+            return false;
         });
 
-        node = mapsMouseEvent.latLng.toJSON()
+        $('#form-edit').find('textarea[name="alamat"]').val(data_unit.alamat);
+        $('#form-edit').find('textarea[name="keterangan"]').val(data_unit.keterangan);
 
-        $('#latitude').val(node.lat);
-        $('#longitude').val(node.lng);
-
-        marker2.open(map2);
-    });
-
-    map.setCenter(myLatlng);
-    map2.setCenter(myLatlng);
-};
-
-$(document).ready(function() {
-    $('.dropify').dropify();
-
-    $('.tidak-berubah').click(function () {
-        return false;
-    });
-
-    $('#form-edit').find('textarea[name="alamat"]').val(data_unit.alamat);
-    $('#form-edit').find('textarea[name="keterangan"]').val(data_unit.keterangan);
-
-    $('.btn-simpan').click(function() {
-        $.blockUI({
-            message:
-            '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Mohon Tunggu...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
-            css: {
-            backgroundColor: 'transparent',
-            color: '#fff',
-            border: '0'
-            },
-            overlayCSS: {
-            opacity: 0.5
-            },
-            timeout: 1000,
-            baseZ: 2000
+        $('.btn-simpan').click(function () {
+            $.blockUI({
+                message: '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Mohon Tunggu...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
+                css: {
+                    backgroundColor: 'transparent',
+                    color: '#fff',
+                    border: '0'
+                },
+                overlayCSS: {
+                    opacity: 0.5
+                },
+                timeout: 1000,
+                baseZ: 2000
+            });
         });
     });
-});
 
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize">
+</script>
 
 @endpush
-

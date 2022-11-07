@@ -154,7 +154,7 @@
 
     // search bengkel
     function searchBengkel() {
-        // location.reload();
+
         // Desktop
         let tipeKendaraan = document.getElementById("tipeKendaraan").value;
         let tipeBan = document.getElementById("tipeBan").value;
@@ -243,8 +243,10 @@
 
         // ALL BENGKEL
        if (Array.isArray(locationBengkel)){
+
         // make marker on map from locationBengkel
         locationBengkel.forEach((item) => {
+
             // calculate radius
             let latFrom = deg2rad(lat)
             let lngFrom = deg2rad(lng);
@@ -259,7 +261,6 @@
             marker.setMap(null);
 
             if (radius <= 2000){
-
                 let marker = new google.maps.Marker({
                     position: new google.maps.LatLng(item.lat, item.lng),
                     map: map,

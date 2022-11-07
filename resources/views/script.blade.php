@@ -1,5 +1,7 @@
 <script>
 
+    let locationBengkel = [];
+
     // map function
     function myMap() {
         let myCenter = new google.maps.LatLng(-7.758046187031497, 110.32821718384228);
@@ -150,10 +152,9 @@
         circle.setMap(map);
     }
 
-    let locationBengkel = [];
-
     // search bengkel
     function searchBengkel() {
+        // location.reload();
         // Desktop
         let tipeKendaraan = document.getElementById("tipeKendaraan").value;
         let tipeBan = document.getElementById("tipeBan").value;
@@ -163,21 +164,25 @@
         $('#form-cari-bengkel').submit(function(e){
             e.preventDefault();
                 $.ajax({
-                url: "/",
-                type: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "tipeKendaraan": tipeKendaraan,
-                    "tipeBan": tipeBan,
-                    "jenisService": jenisService,
-                },
-                success: function(response) {
-                    locationBengkel.push(response.data);
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            })
+                    url: "/",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "tipeKendaraan": tipeKendaraan,
+                        "tipeBan": tipeBan,
+                        "jenisService": jenisService,
+                    }
+                })
+                .done(function(res, xhr, meta) {
+                    locationBengkel = res.data;
+                })
+                .fail(function(res, error) {
+                    toastr.error(res.responseJSON.message, 'Gagal')
+                })
+                .always(function() { });
+
+            return false;
         });
 
         // Mobile
@@ -236,11 +241,9 @@
         let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
         // ALL BENGKEL
-        const locationBengkels = locationBengkel[0];
-
+       if (Array.isArray(locationBengkel)){
         // make marker on map from locationBengkel
-        locationBengkels.forEach((item) => {
-
+        locationBengkel.forEach((item) => {
             // calculate radius
             let latFrom = deg2rad(lat)
             let lngFrom = deg2rad(lng);
@@ -248,89 +251,95 @@
             let lngTo = deg2rad(parseFloat(item.lng));
             let latDelta = latTo - latFrom;
             let lngDelta = lngTo - lngFrom;
-
             let angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latDelta / 2), 2) + Math.cos(latTo) * Math.cos(latFrom) * Math.pow(Math.sin(lngDelta / 2), 2)));
+
             let radius = 6371000 * angle;
 
+            marker.setMap(null);
+
             if (radius <= 2000){
+
                 let marker = new google.maps.Marker({
                     position: new google.maps.LatLng(item.lat, item.lng),
                     map: map,
                     title: item.title,
                     icon: './images/workshop.svg',
-            });
-
-            // info window
-            let infowindow = new google.maps.InfoWindow({
-                content: `<div class="container d-flex justify-content-around modal-container">
-            <div>
-            <img src="${item.foto_bengkel}" class="d-block modal-image" />
-            <button onclick="chatWhatsapp(${item.nomor_hp})" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
-            <button onclick="callPhone(${item.nomor_hp})" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
-            </div>
-
-            <div>
-            <h1 class="modal-header">${item.namaBengkel}</h1>
-            <p class="modal-text">${item.alamatBengkel}</p>
-            <ul class="modal-text_gray">
-            ${item.tubles == 1 ? `<li>
-              <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-              <span>Tubles</span>
-              </li>` : `<li>
-              <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-              <span>Tubles</span>
-              </li>` }
-            ${item.nonTubles == 1 ? `<li>
-            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-            <span>Non-Tubles</span>
-            </li>` : `<li>
-            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-            <span>Non-Tubles</span>
-            </li>` }
-            ${item.terima_motor == 1 ? `<li>
-            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-            <span>Motor</span>
-            </li>` : `<li>
-            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-            <span>Motor</span>
-            </li>` }
-            ${item.terima_mobil == 1 ? `<li>
-            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-            <span>Mobil</span>
-            </li>` : `<li>
-            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-            <span>Mobil</span>
-            </li>` }
-            ${item.repairOnDelivery == 1 ? `<li>
-            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-            <span>Repair On Delivery</span>
-            </li>` : `<li>
-            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-            <span>Repair On Delivery</span>
-            </li>`}
-            ${item.terima_kendaraan_berat == 1 ? `<li>
-            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-            <span>Terima Kendaraan Berat</span>
-            </li>` : `<li>
-            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-            <span>Terima Kendaraan Berat</span>
-            </li>`}
-            </ul>
-            </div>
-            </div>`
                 });
 
-                // event listener
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                });
-            }
-        })
+                // info window
+                let infowindow = new google.maps.InfoWindow({
+                    content: `<div class="container d-flex justify-content-around modal-container">
+                <div>
+                <img src="${item.foto_bengkel}" class="d-block modal-image"/>
+                <button onclick="chatWhatsapp(${item.nomor_hp})" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
+                <button onclick="callPhone(${item.nomor_hp})" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
+                </div>
 
-        // use methods
+                <div>
+                <h1 class="modal-header">${item.namaBengkel}</h1>
+                <p class="modal-text">${item.alamatBengkel}</p>
+                <ul class="modal-text_gray">
+                ${item.tubles == 1 ? `<li>
+                  <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                  <span>Tubles</span>
+                  </li>` : `<li>
+                  <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                  <span>Tubles</span>
+                  </li>` }
+                ${item.nonTubles == 1 ? `<li>
+                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                <span>Non-Tubles</span>
+                </li>` : `<li>
+                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                <span>Non-Tubles</span>
+                </li>` }
+                ${item.terima_motor == 1 ? `<li>
+                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                <span>Motor</span>
+                </li>` : `<li>
+                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                <span>Motor</span>
+                </li>` }
+                ${item.terima_mobil == 1 ? `<li>
+                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                <span>Mobil</span>
+                </li>` : `<li>
+                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                <span>Mobil</span>
+                </li>` }
+                ${item.repairOnDelivery == 1 ? `<li>
+                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                <span>Repair On Delivery</span>
+                </li>` : `<li>
+                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                <span>Repair On Delivery</span>
+                </li>`}
+                ${item.terima_kendaraan_berat == 1 ? `<li>
+                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                <span>Terima Kendaraan Berat</span>
+                </li>` : `<li>
+                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                <span>Terima Kendaraan Berat</span>
+                </li>`}
+                </ul>
+                </div>
+                </div>`
+                    });
+
+                    // event listener
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+                    marker.setMap(map);
+                }
+                else {
+                    marker.setMap(null);
+                }
+            })
+        }
+
         marker.setMap(map);
         circle.setMap(map);
-
     }
 
     function deg2rad(deg) {

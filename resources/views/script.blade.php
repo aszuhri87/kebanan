@@ -1,4 +1,5 @@
 <script>
+
     // map function
     function myMap() {
         let myCenter = new google.maps.LatLng(-7.758046187031497, 110.32821718384228);
@@ -139,6 +140,8 @@
             icon: './images/pin.svg',
         });
 
+        // console.log(position.coords.latitude);
+
         // map
         let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
@@ -147,12 +150,35 @@
         circle.setMap(map);
     }
 
+    let locationBengkel = [];
+
     // search bengkel
     function searchBengkel() {
         // Desktop
         let tipeKendaraan = document.getElementById("tipeKendaraan").value;
         let tipeBan = document.getElementById("tipeBan").value;
         let jenisService = document.getElementById("jenisService").value;
+
+        //post data
+        $('#form-cari-bengkel').submit(function(e){
+            e.preventDefault();
+                $.ajax({
+                url: "/",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "tipeKendaraan": tipeKendaraan,
+                    "tipeBan": tipeBan,
+                    "jenisService": jenisService,
+                },
+                success: function(response) {
+                    locationBengkel.push(response.data);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        });
 
         // Mobile
         let tipeKendaraanMobile = document.getElementById("tipeKendaraanMobile").value;
@@ -210,112 +236,116 @@
         let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
         // ALL BENGKEL
-        let locationBengkel = [{
-                lat: -7.759208981841376,
-                lng: 110.33156897191898,
-                namaBengkel: "Jago Motor",
-                alamatBengkel: "Jl. Siliwangi No.32G, Area Sawah, Nogotirto, Kec. Gamping, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55592",
-                tubless: true,
-                nonTubles: true,
-                repairOnDelivery: true,
-            },
-            {
-                lat: -7.763318367710062,
-                lng: 110.34139460932172,
-                namaBengkel: "Super Motor",
-                alamatBengkel: "Jl. Gito Gati Kec. Gamping, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55592",
-                tubless: false,
-                nonTubles: true,
-                repairOnDelivery: false,
-            },
-            {
-                lat: -7.775310626713152,
-                lng: 110.33905344769629,
-                namaBengkel: "Prima Motor",
-                alamatBengkel: "Jl. Magelang, Kec. Gamping, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55592",
-                tubless: false,
-                nonTubles: true,
-                repairOnDelivery: true,
-            },
-            {
-                lat: -7.768920633516325,
-                lng: 110.33163240707223,
-                namaBengkel: "Balap Motor",
-                alamatBengkel: "Jl. Wates, Kec. Gamping, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55592",
-                tubless: true,
-                nonTubles: true,
-                repairOnDelivery: false,
-            }
-        ]
+        const locationBengkels = locationBengkel[0];
 
         // make marker on map from locationBengkel
-        locationBengkel.forEach((item) => {
-            let marker = new google.maps.Marker({
-                position: new google.maps.LatLng(item.lat, item.lng),
-                map: map,
-                title: item.title,
-                icon: './images/workshop.svg',
+        locationBengkels.forEach((item) => {
+
+            // calculate radius
+            let latFrom = deg2rad(lat)
+            let lngFrom = deg2rad(lng);
+            let latTo = deg2rad(parseFloat(item.lat));
+            let lngTo = deg2rad(parseFloat(item.lng));
+            let latDelta = latTo - latFrom;
+            let lngDelta = lngTo - lngFrom;
+
+            let angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latDelta / 2), 2) + Math.cos(latTo) * Math.cos(latFrom) * Math.pow(Math.sin(lngDelta / 2), 2)));
+            let radius = 6371000 * angle;
+
+            if (radius <= 2000){
+                let marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(item.lat, item.lng),
+                    map: map,
+                    title: item.title,
+                    icon: './images/workshop.svg',
             });
 
             // info window
             let infowindow = new google.maps.InfoWindow({
                 content: `<div class="container d-flex justify-content-around modal-container">
-        <div>
-        <img src="./images/main.png" class="d-block modal-image" />
-        <button onclick="chatWhatsapp()" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
-        <button onclick="callPhone()" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
-        </div>
+            <div>
+            <img src="${item.foto_bengkel}" class="d-block modal-image" />
+            <button onclick="chatWhatsapp(${item.nomor_hp})" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
+            <button onclick="callPhone(${item.nomor_hp})" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
+            </div>
 
-        <div>
-        <h1 class="modal-header">${item.namaBengkel}</h1>
-        <p class="modal-text">${item.alamatBengkel}</p>
-        <ul class="modal-text_gray">
-        ${item.tubless ? `<li>
-          <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-          <span>Non-Tubles</span>
-          </li>` : `<li>
-          <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-          <span>Non-Tubles</span>
-          </li>` }
-        ${item.nonTubles ? `<li>
-        <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-        <span>Tubles</span>
-        </li>` : `<li>
-        <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-        <span>Tubles</span>
-        </li>` }
-        ${item.repairOnDelivery ? `<li>
-        <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-        <span>Repair On Delivery</span>
-        </li>` : `<li>
-        <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-        <span>Repair On Delivery</span>
-        </li>`}
-        </ul>
-        </div>
-        </div>`
-            });
+            <div>
+            <h1 class="modal-header">${item.namaBengkel}</h1>
+            <p class="modal-text">${item.alamatBengkel}</p>
+            <ul class="modal-text_gray">
+            ${item.tubles == 1 ? `<li>
+              <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+              <span>Tubles</span>
+              </li>` : `<li>
+              <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+              <span>Tubles</span>
+              </li>` }
+            ${item.nonTubles == 1 ? `<li>
+            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+            <span>Non-Tubles</span>
+            </li>` : `<li>
+            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+            <span>Non-Tubles</span>
+            </li>` }
+            ${item.terima_motor == 1 ? `<li>
+            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+            <span>Motor</span>
+            </li>` : `<li>
+            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+            <span>Motor</span>
+            </li>` }
+            ${item.terima_mobil == 1 ? `<li>
+            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+            <span>Mobil</span>
+            </li>` : `<li>
+            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+            <span>Mobil</span>
+            </li>` }
+            ${item.repairOnDelivery == 1 ? `<li>
+            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+            <span>Repair On Delivery</span>
+            </li>` : `<li>
+            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+            <span>Repair On Delivery</span>
+            </li>`}
+            ${item.terima_kendaraan_berat == 1 ? `<li>
+            <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+            <span>Terima Kendaraan Berat</span>
+            </li>` : `<li>
+            <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+            <span>Terima Kendaraan Berat</span>
+            </li>`}
+            </ul>
+            </div>
+            </div>`
+                });
 
-            // event listener
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
-            });
+                // event listener
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                });
+            }
         })
 
         // use methods
         marker.setMap(map);
         circle.setMap(map);
+
     }
 
-    function chatWhatsapp() {
+    function deg2rad(deg) {
+      return deg * (Math.PI/180);
+    }
+
+    function chatWhatsapp(phone) {
         window.open(
-            `https://api.whatsapp.com/send?phone=6285743099993&text=Halo ban saya bocor, bisa minta bantuannya?`,
+            `https://api.whatsapp.com/send?phone=`+ phone +`&text=Halo ban saya bocor, bisa minta bantuannya?`,
             "_blank"
         );
     }
 
-    function callPhone() {
-        window.open(`tel:+6285743099993`, "_blank");
+    function callPhone(phone) {
+        window.open(`tel:+`+ phone, "_blank");
     }
 
     // style map

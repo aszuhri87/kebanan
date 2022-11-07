@@ -161,11 +161,12 @@
         let jenisService = document.getElementById("jenisService").value;
 
         //post data
-        $('#form-cari-bengkel').submit(function(e){
-            e.preventDefault();
+        $('#form-cari-bengkel').submit(function(event){
+            event.preventDefault();
                 $.ajax({
                     url: "/",
                     type: "POST",
+                    async: false,
                     cache: false,
                     data: {
                         "_token": "{{ csrf_token() }}",

@@ -2,6 +2,11 @@
 
     let locationBengkel = [];
 
+    let map = null;
+    let myMarker = null;
+    let myCircle = null;
+    let bengkelMarkers = null;
+
     // map function
     function myMap() {
         let myCenter = new google.maps.LatLng(-7.758046187031497, 110.32821718384228);
@@ -19,7 +24,7 @@
         };
 
         // circle
-        let circle = new google.maps.Circle({
+        myCircle = new google.maps.Circle({
             center: myCenter,
             radius: 2000,
             strokeColor: "rgba(0,0,0,0)",
@@ -28,13 +33,13 @@
         });
 
         // marker
-        let marker = new google.maps.Marker({
+        myMarker = new google.maps.Marker({
             position: myCenter,
             icon: './images/pin.svg',
         });
 
         // map
-        let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
         // search location use autocomplete
         let inputDesktop = document.getElementById("pac-input");
@@ -48,8 +53,9 @@
             strictBounds: false,
             types: ["establishment"],
         };
-        const autocompleteDesktop = new google.maps.places.Autocomplete(inputDesktop, options);
-        const autocompleteMobile = new google.maps.places.Autocomplete(inputMobile, options);
+
+        autocompleteDesktop = new google.maps.places.Autocomplete(inputDesktop, options);
+        autocompleteMobile = new google.maps.places.Autocomplete(inputMobile, options);
 
         autocompleteDesktop.addListener("place_changed", () => {
             const place = autocompleteDesktop.getPlace();
@@ -65,11 +71,11 @@
                 map.setZoom(14);
             }
 
-            marker.setPosition(place.geometry.location);
-            marker.setVisible(true);
+            myMarker.setPosition(place.geometry.location);
+            myMarker.setVisible(true);
 
-            circle.setCenter(place.geometry.location);
-            circle.setMap(map);
+            myCircle.setCenter(place.geometry.location);
+            myCircle.setMap(map);
         });
 
         autocompleteMobile.addListener("place_changed", () => {
@@ -86,16 +92,17 @@
                 map.setZoom(14);
             }
 
-            marker.setPosition(place.geometry.location);
-            marker.setVisible(true);
+            myMarker.setPosition(place.geometry.location);
+            myMarker.setVisible(true);
 
-            circle.setCenter(place.geometry.location);
-            circle.setMap(map);
+            myCircle.setCenter(place.geometry.location);
+            myCircle.setMap(map);
         });
 
         // use methods
-        marker.setMap(map);
-        circle.setMap(map);
+        myMarker.setMap(map);
+        myCircle.setMap(map);
+
         autocompleteDesktop.bindTo("bounds", map);
         autocompleteMobile.bindTo("bounds", map);
     }
@@ -128,7 +135,8 @@
         };
 
         // circle
-        let circle = new google.maps.Circle({
+        myCircle.setMap(null);
+        myCircle = new google.maps.Circle({
             center: myCenter,
             radius: 2000,
             strokeColor: "rgba(0,0,0,0)",
@@ -137,19 +145,17 @@
         });
 
         // marker
-        let marker = new google.maps.Marker({
+        myMarker.setMap(null);
+        myMarker = new google.maps.Marker({
             position: myCenter,
             icon: './images/pin.svg',
         });
 
         // console.log(position.coords.latitude);
 
-        // map
-        let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
         // use methods
-        marker.setMap(map);
-        circle.setMap(map);
+        myMarker.setMap(map);
+        myCircle.setMap(map);
     }
 
     // search bengkel
@@ -220,29 +226,11 @@
             styles: styleMap,
         };
 
-        // circle
-        let circle = new google.maps.Circle({
-            center: myCenter,
-            radius: 2000,
-            strokeColor: "rgba(0,0,0,0)",
-            fillColor: "#019444",
-            fillOpacity: 0.2
-        });
-
-        // marker
-        let marker = new google.maps.Marker({
-            position: myCenter,
-            icon: './images/pin.svg',
-        });
-
-        // map
-        let map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
         // ALL BENGKEL
-       if (Array.isArray(locationBengkel)){
+        if (Array.isArray(locationBengkel)){
 
-        // make marker on map from locationBengkel
-        locationBengkel.forEach((item) => {
+            // make marker on map from locationBengkel
+            locationBengkel.forEach((item) => {
 
             // calculate radius
             let latFrom = deg2rad(lat)
@@ -255,10 +243,10 @@
 
             let radius = 6371000 * angle;
 
-            marker.setMap(null);
+            bengkelMarkers.setMap(null);
 
             if (radius <= 2000){
-                let marker = new google.maps.Marker({
+                bengkelMarkers = new google.maps.Marker({
                     position: new google.maps.LatLng(item.lat, item.lng),
                     map: map,
                     title: item.title,
@@ -279,12 +267,12 @@
                 <p class="modal-text">${item.alamatBengkel}</p>
                 <ul class="modal-text_gray">
                 ${item.tubles == 1 ? `<li>
-                  <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-                  <span>Tubles</span>
-                  </li>` : `<li>
-                  <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-                  <span>Tubles</span>
-                  </li>` }
+                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                <span>Tubles</span>
+                </li>` : `<li>
+                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                <span>Tubles</span>
+                </li>` }
                 ${item.nonTubles == 1 ? `<li>
                 <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
                 <span>Non-Tubles</span>
@@ -326,19 +314,17 @@
                     });
 
                     // event listener
-                    google.maps.event.addListener(marker, 'click', function () {
-                        infowindow.open(map, marker);
+                    google.maps.event.addListener(bengkelMarkers, 'click', function () {
+                        infowindow.open(map, bengkelMarkers);
                     });
-                    marker.setMap(map);
+
+                    bengkelMarkers.setMap(map);
                 }
                 else {
-                    marker.setMap(null);
+                    bengkelMarkers.setMap(null);
                 }
             })
         }
-
-        marker.setMap(map);
-        circle.setMap(map);
     }
 
     function deg2rad(deg) {

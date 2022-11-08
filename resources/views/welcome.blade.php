@@ -19,7 +19,8 @@
     <div class="header">
         <nav class="container d-flex justify-content-between align-items-baseline">
             <div>
-                <a href="#"><img src="{{asset('images/logo-kebanan.svg')}}" alt="Kebanan Logo" width="163px" height="81px" /></a>
+                <a href="#"><img src="{{asset('images/logo-kebanan.svg')}}" alt="Kebanan Logo" width="163px"
+                        height="81px" /></a>
             </div>
             <div>
                 <ul class="d-flex header-navigation">
@@ -93,37 +94,38 @@
 
                 <div class="row">
                     <form id="form-cari-bengkel">
-                    <div class="col d-flex justify-content-between">
-                        <div class="d-flex find-service_type">
-                            <img src="images/type.svg" alt="Type Kendaraan" />
-                            <select id="tipeKendaraan" class="form-select">
-                                <option value="">Tipe Kendaraan</option>
-                                <option value="motor">Motor</option>
-                                <option value="mobil">Mobil</option>
-                            </select>
-                        </div>
+                        <div class="col d-flex justify-content-between">
+                            <div class="d-flex find-service_type">
+                                <img src="images/type.svg" alt="Type Kendaraan" />
+                                <select id="tipeKendaraan" class="form-select">
+                                    <option value="">Tipe Kendaraan</option>
+                                    <option value="motor">Motor</option>
+                                    <option value="mobil">Mobil</option>
+                                </select>
+                            </div>
 
-                        <div class="d-flex find-service_type">
-                            <img src="images/tire.svg" alt="Type Ban" />
-                            <select id="tipeBan" class="form-select">
-                                <option value="">Tipe Ban</option>
-                                <option value="biasa">Biasa</option>
-                                <option value="tubles">Tubles</option>
-                            </select>
-                        </div>
+                            <div class="d-flex find-service_type">
+                                <img src="images/tire.svg" alt="Type Ban" />
+                                <select id="tipeBan" class="form-select">
+                                    <option value="">Tipe Ban</option>
+                                    <option value="biasa">Biasa</option>
+                                    <option value="tubles">Tubles</option>
+                                </select>
+                            </div>
 
-                        <div class="d-flex find-service_type">
-                            <img src="images/service.svg" alt="Jenis Service" />
-                            <select id="jenisService" class="form-select">
-                                <option value="">Jenis Service</option>
-                                <option value="antar">Antar Jemput</option>
-                                <option value="biasa">Biasa</option>
-                            </select>
+                            <div class="d-flex find-service_type">
+                                <img src="images/service.svg" alt="Jenis Service" />
+                                <select id="jenisService" class="form-select">
+                                    <option value="">Jenis Service</option>
+                                    <option value="antar">Antar Jemput</option>
+                                    <option value="biasa">Biasa</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
-                <button onclick="searchBengkel()" type="button" class="btn btn-success btn-search button-green mx-auto mt-5">Cari Bengkel</button>
+                <button onclick="searchBengkel()" type="button"
+                    class="btn btn-success btn-search button-green mx-auto mt-5">Cari Bengkel</button>
                 </form>
             </div>
         </div>
@@ -187,14 +189,13 @@
 
         <div class="col">
             <h1 class="cta-header">Belum Terdaftar di KEBANAN?</h1>
-            <p class="cta-text">Start working with Tailwind CSS that can provide everything you need to generate
-                awareness, drive traffic, connect.</p>
+            <p class="cta-text">Daftarkan bengkel tambal ban anda bersama KEBANAN untuk mempemudah masyarakat yang sedang mencari tambal ban disekitar lokasi mereka.</p>
             <button class="button-white">Daftar Sekarang</button>
         </div>
     </div>
 
     <!-- faq -->
-    <div id="about" class="container mb-4 faq-container">
+    <div id="about" class="container mb-5 faq-container">
         <h1 class="faq-header">Yang sering ditanyakan</h1>
 
         <div class="accordion" id="accordionExample">
@@ -202,16 +203,19 @@
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        Apa yang harus dilakukan ketika dalam radius tertentu tidak ada bengkel?
+                        Bagaimana cara menggunakan Kebanan?
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi facilis praesentium esse, odio
-                        explicabo incidunt, rerum nam doloremque sapiente aspernatur error neque consectetur possimus
-                        dolorum ratione ipsum tempora fuga
-                        autem?
+                        Anda dapat mengisi form pencarian diatas, lalu masukkan lokasi tempat Anda berada atau gunakan
+                        pencarian lokasi otomatis. Lalu isi beberapa informasi tambahan seperti jenis kendaraan, tipe
+                        kendaraan, dan jenis servis tambal
+                        ban yang diinginkan. Kemudian, website akan menampilkan beberapa tambal ban yang tersedia di
+                        lokasi sekitar Anda. Pilih pin point yang tersedia untuk melihat info tentang bengkel tambal
+                        ban. Anda bisa memilih untuk menghubungi
+                        bengkel tersebut via whatsapp atau telepon.
                     </div>
                 </div>
             </div>
@@ -226,10 +230,9 @@
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi facilis praesentium esse, odio
-                        explicabo incidunt, rerum nam doloremque sapiente aspernatur error neque consectetur possimus
-                        dolorum ratione ipsum tempora fuga
-                        autem?
+                        Beberapa bengkel tambal ban mungkin belum terdaftar di database KEBANAN, jadi solusinya cobalah
+                        untuk menggeser lokasi Anda beberapa meter dari tempat sebelumnya supaya dapat mengecek lokasi
+                        dalam radius yang berbeda.
                     </div>
                 </div>
             </div>
@@ -238,16 +241,14 @@
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Berapa lama waktu yang dibutuhkan untuk menambal ban?
+                        Berapa lama waktu yang dibutuhkan untuk menghubungi bengkel tambal ban?
                     </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae sed necessitatibus nam
-                        sapiente, est veniam non accusantium odit. Animi ad nostrum voluptas voluptatibus omnis harum
-                        sed aspernatur veniam numquam corrupti?
-                    </div>
+                    <div class="accordion-body">Waktu yang dibutuhkan tergantung dari setiap pengerjaan bengkel tambal
+                        ban yang terdaftar. Kami sarankan Anda untuk menghubungi informasi kontak yang tertera agar
+                        mendapatkan jawaban yang cepat.</div>
                 </div>
             </div>
 
@@ -255,16 +256,14 @@
                 <h2 class="accordion-header" id="headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Bagaimana jika ada tindak penipuan yang dilakukan oleh pihak bengkel?
+                        Bagaimana cara mendaftar menjadi mitra di KEBANAN?
                     </button>
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae sed necessitatibus nam
-                        sapiente, est veniam non accusantium odit. Animi ad nostrum voluptas voluptatibus omnis harum
-                        sed aspernatur veniam numquam corrupti?
-                    </div>
+                    <div class="accordion-body">Silahkan untuk mendaftarkan Bengkel Tambal Ban Anda melalui kontak yang
+                        tersedia dibawah dengan informasi yang benar dan lengkap untuk mempercepat tim kami memproses
+                        data Anda.</div>
                 </div>
             </div>
 
@@ -278,9 +277,10 @@
                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae sed necessitatibus nam
-                        sapiente, est veniam non accusantium odit. Animi ad nostrum voluptas voluptatibus omnis harum
-                        sed aspernatur veniam numquam corrupti?
+                        Beberapa tambal ban mungkin sedang tidak dapat membalas pesan atau telepon anda pada waktu
+                        tersebut karena sedang dalam pengerjaan atau lainnya. Solusinya, Anda bisa menghubungi bengkel
+                        tambal ban lain yang berada dalam radius
+                        terdekat.
                     </div>
                 </div>
             </div>
@@ -290,8 +290,7 @@
     <!-- questions -->
     <div id="contact" class="text-center questions-container mb-4">
         <h1 class="questions-header">Ada pertanyaan tentang Kebanan?, Hubungi kami!</h1>
-        <p class="questions-text">Start working with Tailwin CSS that can provide everything you need to generate
-            awareness, drive traffic, connect</p>
+        <p class="questions-text">Jika pertanyaan anda belum terjawab, jangan ragu untuk menghubungi kami dengan menekan tombol dibawah ini.</p>
         <button class="button-white mx-auto questions-button">Hubungi Sekarang</button>
     </div>
 
@@ -299,8 +298,7 @@
     <div class="container d-flex align-items-baseline mb-4 gap-5 footer">
         <div class="col">
             <img src="images/logo-kebanan.svg" alt="Kebanan Logo" width="150px" />
-            <p class="footer-text_black">We guarantee superior service and quality on every product you purchase, and we
-                will assist you in becoming more successful.</p>
+            <p class="footer-text_black">We provide you with the solution you need for your emergency situation at ease. Finding and contact faster than before.</p>
         </div>
 
         <div class="col">
@@ -362,19 +360,13 @@
     </nav>
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
     @include('script')
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY&libraries=places&callback=myMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY&libraries=places&callback=myMap">
     </script>
 
 </body>
 
 </html>
-
-<!-- API from office : AIzaSyAGE_qMyu1KZXZga00ynayQTxP2wm1kllg -->
-<!-- API free : AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY -->

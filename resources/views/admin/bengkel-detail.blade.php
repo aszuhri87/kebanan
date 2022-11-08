@@ -230,6 +230,11 @@
         });
     });
 
+    var map;
+    var map2;
+    var marker;
+    var marker2;
+
     function initialize() {
         const myLatlng = { lat: parseFloat(data_unit.latitude), lng: parseFloat(data_unit.longitude) };
 
@@ -240,17 +245,17 @@
           disableDefaultUI: true
         };
 
-        const map = new google.maps.Map(document.getElementById("map"), myOptions);
-        const map2 = new google.maps.Map(document.getElementById("map2"), myOptions);
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
+        map2 = new google.maps.Map(document.getElementById("map2"), myOptions);
 
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
             draggable: true,
             clickable: true
         });
 
-        var marker2 = new google.maps.Marker({
+        marker2 = new google.maps.Marker({
            position: myLatlng,
            map: map2,
            draggable: true,
@@ -280,11 +285,8 @@
 
         const input = document.getElementById("pac-input");
         var searchBox = new google.maps.places.SearchBox(input);
+
         map2.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
-
-        google.maps.event.addListener(searchBox, 'places_changed', function() {
-
-        searchBox.set('map', null);
 
         const options = {
             componentRestrictions: {
@@ -297,43 +299,30 @@
 
         const autocomplete = new google.maps.places.Autocomplete(input, options);
 
-        var places = searchBox.getPlaces();
-        var bounds = new google.maps.LatLngBounds();
+        autocomplete.addListener("place_changed", () => {
+            const place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
 
-        var i, place;
-        for (i = 0; place = places[i]; i++) {
-                var marker = new google.maps.Marker({
-                    position: place.geometry.location,
-                    title: place.name,
-                });
+            if (place.geometry.viewport) {
+                map2.fitBounds(place.geometry.viewport);
+                map2.setZoom(14);
+            } else {
+                map2.setCenter(place.geometry.location);
+                map2.setZoom(14);
+            }
 
-                marker.bindTo('map', searchBox, 'map');
+            node = place.geometry.location;
+            $('#latitude').val(node.lat);
+            $('#longitude').val(node.lng);
 
-                google.maps.event.addListener(marker, 'map_changed', function() {
-                    if (!this.getMap()) {
-                        this.unbindAll();
-                    }
-                });
+            marker2.setPosition(place.geometry.location);
+            marker2.setVisible(true);
+        });
 
-                bounds.extend(place.geometry.location);
-
-                node = place.geometry.location;
-
-                $('#latitude').val(node.lat);
-                $('#longitude').val(node.lng);
-        }
-
-        map2.fitBounds(bounds);
-        searchBox.set('map', map2);
-        map2.setZoom(Math.min(map2.getZoom(),20));
-
-      });
-
-
-      map.setCenter(myLatlng);
-      map2.setCenter(myLatlng);
-
-      google.maps.event.addDomListener(window, 'load', initialize);
+        marker2.setMap(map2);
+        autocomplete.bindTo("bounds", map2);
     };
 
 </script>

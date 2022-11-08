@@ -226,6 +226,9 @@
             styles: styleMap,
         };
 
+        let makerLat = myMarker.position.lat();
+        let makerLng = myMarker.position.lng();
+
         // ALL BENGKEL
         if (Array.isArray(locationBengkel)){
 
@@ -233,17 +236,17 @@
             locationBengkel.forEach((item) => {
 
             // calculate radius
-            let latFrom = deg2rad(lat)
-            let lngFrom = deg2rad(lng);
-            let latTo = deg2rad(parseFloat(item.lat));
-            let lngTo = deg2rad(parseFloat(item.lng));
+            let latFrom = deg2rad(makerLat)
+            let lngFrom = deg2rad(makerLng);
+            let latTo = deg2rad(item.lat);
+            let lngTo = deg2rad(item.lng);
             let latDelta = latTo - latFrom;
             let lngDelta = lngTo - lngFrom;
             let angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latDelta / 2), 2) + Math.cos(latTo) * Math.cos(latFrom) * Math.pow(Math.sin(lngDelta / 2), 2)));
 
             let radius = 6371000 * angle;
 
-            bengkelMarkers.setMap(null);
+            // bengkelMarkers.setMap(null);
 
             if (radius <= 2000){
                 bengkelMarkers = new google.maps.Marker({
@@ -321,7 +324,9 @@
                     bengkelMarkers.setMap(map);
                 }
                 else {
-                    bengkelMarkers.setMap(null);
+                    if (bengkelMarkers && bengkelMarkers.setMap) {
+                        bengkelMarkers.setMap(null);
+                    }
                 }
             })
         }

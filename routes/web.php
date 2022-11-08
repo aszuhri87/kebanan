@@ -32,27 +32,33 @@ Route::post('/', function (Request $request) {
         'terima_non_tubles as nonTubles',
         'terima_panggilan as repairOnDelivery',
         'terima_kendaraan_berat',
-        'nomor_hp'
+        'nomor_hp',
     ])
     ->whereNull('deleted_at');
 
-    if ($request->tipeKendaraan == 'mobil') {
-        $search->where('terima_mobil', 1);
-    } else {
-        $search->where('terima_motor', 1);
+    if ($request->tipeKendaraan != null) {
+        if ($request->tipeKendaraan == 'mobil') {
+            $search->where('terima_mobil', 1);
+        } else {
+            $search->where('terima_motor', 1);
+        }
     }
 
-    if ($request->tipeBan == 'tubles') {
-        $search->where('terima_tubles', 1);
-    } else {
-        $search->where('terima_non_tubles', 1);
+    if ($request->tipeBan != null) {
+        if ($request->tipeBan == 'tubles') {
+            $search->where('terima_tubles', 1);
+        } else {
+            $search->where('terima_non_tubles', 1);
+        }
     }
 
-    if ($request->jenisService == 'antar') {
-        $search->where('terima_panggilan', 1);
-    } else {
-        $search->where('terima_panggilan', 0);
-        $search->orWhere('terima_panggilan', null);
+    if ($request->jenisService != null) {
+        if ($request->jenisService == 'antar') {
+            $search->where('terima_panggilan', 1);
+        } else {
+            $search->where('terima_panggilan', 0);
+            $search->orWhere('terima_panggilan', null);
+        }
     }
 
     $result = $search->get();

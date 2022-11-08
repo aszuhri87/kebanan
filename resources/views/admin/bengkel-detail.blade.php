@@ -111,10 +111,9 @@
     </div>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade" id="editModal{{$bengkel->id}}" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <form action="{{url('admin/bengkel/'.$bengkel->id)}}" id="form-edit" method="post" enctype="multipart/form-data">
                 @csrf
@@ -148,6 +147,9 @@
                         <input type="text" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp" value="{{$bengkel->nomor_hp}}">
                     </div>
                     <div class="form-group">
+                        <div class="card-body">
+                            <input id="pac-input" class="form-control" type="text" placeholder="Cari tempat"/>
+                        </div>
                         <div id="map2"></div>
                     </div>
                     <div class="d-flex mt-3">
@@ -200,6 +202,34 @@
 <script>
     var data_unit = <?php echo json_encode($bengkel)?>;
 
+    $(document).ready(function() {
+        $('.dropify').dropify();
+
+        $('.tidak-berubah').click(function () {
+            return false;
+        });
+
+        $('#form-edit').find('textarea[name="alamat"]').val(data_unit.alamat);
+        $('#form-edit').find('textarea[name="keterangan"]').val(data_unit.keterangan);
+
+        $('.btn-simpan').click(function() {
+            $.blockUI({
+                message:
+                '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Mohon Tunggu...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
+                css: {
+                backgroundColor: 'transparent',
+                color: '#fff',
+                border: '0'
+                },
+                overlayCSS: {
+                opacity: 0.5
+                },
+                timeout: 1000,
+                baseZ: 2000
+            });
+        });
+    });
+
     function initialize() {
         const myLatlng = { lat: parseFloat(data_unit.latitude), lng: parseFloat(data_unit.longitude) };
 
@@ -248,40 +278,65 @@
             marker2.open(map2);
         });
 
-        map.setCenter(myLatlng);
-        map2.setCenter(myLatlng);
+        const input = document.getElementById("pac-input");
+        var searchBox = new google.maps.places.SearchBox(input);
+        map2.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+
+        google.maps.event.addListener(searchBox, 'places_changed', function() {
+
+            searchBox.set('map', null);
+
+            const options = {
+                componentRestrictions: {
+                    country: "id"
+                },
+                fields: ["address_components", "geometry", "name"],
+                strictBounds: false,
+                types: ["establishment"],
+            };
+
+            const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+            var places = searchBox.getPlaces();
+
+            var i, place;
+            for (i = 0; place = places[i]; i++) {
+                var marker = new google.maps.Marker({
+                    position: place.geometry.location,
+                    title: place.name,
+                });
+
+                marker.bindTo('map', searchBox, 'map');
+
+                google.maps.event.addListener(marker, 'map_changed', function() {
+                    if (!this.getMap()) {
+                        this.unbindAll();
+                    }
+                });
+
+                bounds.extend(place.geometry.location);
+
+                node = place.geometry.location;
+
+                $('#latitude').val(node.lat);
+                $('#longitude').val(node.lng);
+            }
+
+        map2.fitBounds(bounds);
+        searchBox.set('map', map2);
+        map2.setZoom(Math.min(map2.getZoom(),12));
+
+      });
+
+      map.setCenter(myLatlng);
+      map2.setCenter(myLatlng);
+
+      google.maps.event.addDomListener(window, 'load', initialize);
     };
 
-    $(document).ready(function() {
-        $('.dropify').dropify();
-
-        $('.tidak-berubah').click(function () {
-            return false;
-        });
-
-        $('#form-edit').find('textarea[name="alamat"]').val(data_unit.alamat);
-        $('#form-edit').find('textarea[name="keterangan"]').val(data_unit.keterangan);
-
-        $('.btn-simpan').click(function() {
-            $.blockUI({
-                message:
-                '<div class="d-flex justify-content-center align-items-center"><p class="mr-50 mb-0">Mohon Tunggu...</p> <div class="spinner-grow spinner-grow-sm text-white" role="status"></div> </div>',
-                css: {
-                backgroundColor: 'transparent',
-                color: '#fff',
-                border: '0'
-                },
-                overlayCSS: {
-                opacity: 0.5
-                },
-                timeout: 1000,
-                baseZ: 2000
-            });
-        });
-    });
 </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize"></script>
+<script defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize"></script>
 
 @endpush
 

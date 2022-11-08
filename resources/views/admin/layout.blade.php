@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('css/dropify.css')}}" />
@@ -14,9 +15,25 @@
 
     <style>
         #map, #map2 {
-        height: 300px;
-        border: 1px solid #000;
+        height: 500px;
+        /* border: 1px solid #000; */
+        border-radius: 5px;
         }
+
+        .pac-container {
+            background-color: #FFF;
+            z-index: 20;
+            position: fixed;
+            display: inline-block;
+            float: left;
+        }
+        .modal{
+            z-index: 20;
+        }
+        .modal-backdrop{
+            z-index: 10;
+        }​
+
     </style>
 
     @stack('style')

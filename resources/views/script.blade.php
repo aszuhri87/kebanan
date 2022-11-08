@@ -161,30 +161,27 @@
         let jenisService = document.getElementById("jenisService").value;
 
         //post data
-        $('#form-cari-bengkel').submit(function(event){
-            event.preventDefault();
-                $.ajax({
-                    url: "/",
-                    type: "POST",
-                    async: false,
-                    cache: false,
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "tipeKendaraan": tipeKendaraan,
-                        "tipeBan": tipeBan,
-                        "jenisService": jenisService,
-                    }
-                })
-                .done(function(res, xhr, meta) {
-                    locationBengkel = res.data;
-                })
-                .fail(function(res, error) {
-                    toastr.error(res.responseJSON.message, 'Gagal')
-                })
-                .always(function() { });
+        $.ajax({
+            url: "/",
+            type: "POST",
+            async: false,
+            cache: false,
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "tipeKendaraan": tipeKendaraan,
+                "tipeBan": tipeBan,
+                "jenisService": jenisService,
+            }
+        })
+        .done(function(res, xhr, meta) {
+            locationBengkel = res.data;
 
-            return false;
-        });
+            console.log(locationBengkel);
+        })
+        .fail(function(res, error) {
+            toastr.error(res.responseJSON.message, 'Gagal')
+        })
+        .always(function() { });
 
         // Mobile
         let tipeKendaraanMobile = document.getElementById("tipeKendaraanMobile").value;

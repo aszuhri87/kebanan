@@ -123,7 +123,7 @@
                     </div>
                 </div>
 
-                <button onclick="searchBengkel()" type="submit" class="btn btn-success btn-search button-green mx-auto mt-5">Cari Bengkel</button>
+                <button onclick="searchBengkel()" type="button" class="btn btn-success btn-search button-green mx-auto mt-5">Cari Bengkel</button>
                 </form>
             </div>
         </div>

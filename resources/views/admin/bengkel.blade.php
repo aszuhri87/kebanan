@@ -48,7 +48,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <form action="{{url('admin/bengkel')}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -82,6 +82,9 @@
                         <input type="text" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp">
                     </div>
                     <div class="form-group">
+                        <div class="card-body">
+                            <input id="pac-input" class="form-control" type="text" placeholder="Cari tempat"/>
+                        </div>
                         <div id="map"></div>
                     </div>
                     <div class="d-flex mt-3">
@@ -172,26 +175,82 @@
         let node = {};
 
         map.addListener("click", (mapsMouseEvent) => {
-          if (marker && marker.setMap) {
-              marker.setMap(null);
-          }
+            if (marker && marker.setMap) {
+                marker.setMap(null);
+            }
 
-          marker = new google.maps.Marker({
-            position: mapsMouseEvent.latLng,
-            map: map,
-            animation: google.maps.Animation.DROP,
-          });
+            marker = new google.maps.Marker({
+              position: mapsMouseEvent.latLng,
+              map: map,
+              animation: google.maps.Animation.DROP,
+            });
 
-          node = mapsMouseEvent.latLng.toJSON()
+            node = mapsMouseEvent.latLng.toJSON()
 
-          $('#latitude').val(node.lat);
-          $('#longitude').val(node.lng);
+            $('#latitude').val(node.lat);
+            $('#longitude').val(node.lng);
 
-          marker.open(map);
+            marker.open(map);
         });
+
+        const input = document.getElementById("pac-input");
+        var searchBox = new google.maps.places.SearchBox(input);
+
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+
+        google.maps.event.addListener(searchBox, 'places_changed', function() {
+            searchBox.set('map', null);
+
+            const options = {
+                componentRestrictions: {
+                    country: "id"
+                },
+                fields: ["address_components", "geometry", "name"],
+                strictBounds: false,
+                types: ["establishment"],
+            };
+
+            const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+            var places = searchBox.getPlaces();
+
+            var i, place;
+            for (i = 0; place = places[i]; i++) {
+                var marker = new google.maps.Marker({
+                    position: place.geometry.location,
+                    title: place.name,
+                });
+
+                marker.bindTo('map', searchBox, 'map');
+                google.maps.event.addListener(marker, 'map_changed', function() {
+                    if (!this.getMap()) {
+                        this.unbindAll();
+                    }
+                });
+
+                bounds.extend(place.geometry.location);
+                node = place.geometry.location;
+
+                $('#latitude').val(node.lat);
+                $('#longitude').val(node.lng);
+
+                if (place.geometry.viewport) {
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            }
+
+        map.fitBounds(bounds);
+        searchBox.set('map', map);
+        map.setZoom(Math.min(map.getZoom(),12));
+
+      });
+
+      google.maps.event.addDomListener(window, 'load', initialize);
     }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" defer></script>
 
 @endpush

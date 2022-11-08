@@ -232,9 +232,6 @@
 
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
-
-            circle.setCenter(place.geometry.location);
-            circle.setMap(map);
         });
 
         marker.setMap(map);

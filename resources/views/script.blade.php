@@ -58,6 +58,10 @@
         autocompleteMobile = new google.maps.places.Autocomplete(inputMobile, options);
 
         autocompleteDesktop.addListener("place_changed", () => {
+            if (bengkelMarkers && bengkelMarkers.setMap) {
+                bengkelMarkers.setMap(null);
+            }
+
             const place = autocompleteDesktop.getPlace();
             if (!place.geometry) {
                 return;
@@ -109,6 +113,10 @@
 
     // find location
     function myLocation() {
+        if (bengkelMarkers && bengkelMarkers.setMap) {
+            bengkelMarkers.setMap(null);
+        }
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
@@ -162,6 +170,8 @@
     function searchBengkel() {
 
         // Desktop
+        let makerLat = myMarker.position.lat();
+        let makerLng = myMarker.position.lng();
         let tipeKendaraan = document.getElementById("tipeKendaraan").value;
         let tipeBan = document.getElementById("tipeBan").value;
         let jenisService = document.getElementById("jenisService").value;
@@ -177,6 +187,8 @@
                 "tipeKendaraan": tipeKendaraan,
                 "tipeBan": tipeBan,
                 "jenisService": jenisService,
+                "lat": makerLat,
+                "lng": makerLng
             }
         })
         .done(function(res, xhr, meta) {
@@ -185,7 +197,7 @@
             console.log(locationBengkel);
         })
         .fail(function(res, error) {
-            toastr.error(res.responseJSON.message, 'Gagal')
+            console.error(res.responseJSON.message, 'Gagal')
         })
         .always(function() { });
 
@@ -209,6 +221,10 @@
     }
 
     function showAllBengkel(position) {
+        if (bengkelMarkers && bengkelMarkers.setMap) {
+            bengkelMarkers.setMap(null);
+        }
+
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
 
@@ -231,24 +247,11 @@
 
         // ALL BENGKEL
         if (Array.isArray(locationBengkel)){
-
             // make marker on map from locationBengkel
             locationBengkel.forEach((item) => {
 
             // calculate radius
-            let latFrom = deg2rad(makerLat)
-            let lngFrom = deg2rad(makerLng);
-            let latTo = deg2rad(item.lat);
-            let lngTo = deg2rad(item.lng);
-            let latDelta = latTo - latFrom;
-            let lngDelta = lngTo - lngFrom;
-            let angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latDelta / 2), 2) + Math.cos(latTo) * Math.cos(latFrom) * Math.pow(Math.sin(lngDelta / 2), 2)));
-
-            let radius = 6371000 * angle;
-
-            // bengkelMarkers.setMap(null);
-
-            if (radius <= 2000){
+            if (item.radius <= 2000){
                 bengkelMarkers = new google.maps.Marker({
                     position: new google.maps.LatLng(item.lat, item.lng),
                     map: map,

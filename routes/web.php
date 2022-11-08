@@ -61,7 +61,25 @@ Route::post('/', function (Request $request) {
         }
     }
 
-    $result = $search->get();
+    $results = $search->get();
+
+    foreach ($results as $cari) {
+        $latFrom = deg2rad((float) $cari->lat);
+        $lngFrom = deg2rad((float) $cari->lng);
+        $latTo = deg2rad((float) $request->lat);
+        $lngTo = deg2rad((float) $request->lng);
+
+        $latDelta = $latTo - $latFrom;
+        $lngDelta = $lngTo - $lngFrom;
+
+        $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) + cos($latTo) * cos($latFrom) * pow(sin($lngDelta / 2), 2)));
+        $radius = 6371000 * $angle;
+        $cari->radius = $radius;
+
+        if ($cari->radius <= 2000) {
+            $result[] = $cari;
+        }
+    }
 
     return response()->json([
         'status' => 'success',

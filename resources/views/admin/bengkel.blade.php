@@ -160,7 +160,7 @@
         const myLatlng = { lat: -7.801494832202592, lng: 110.36474864359786 };
 
         const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 10,
+          zoom: 14,
           center: myLatlng,
           disableDefaultUI: true
         });
@@ -213,6 +213,8 @@
             const autocomplete = new google.maps.places.Autocomplete(input, options);
 
             var places = searchBox.getPlaces();
+            var bounds = new google.maps.LatLngBounds();
+
 
             var i, place;
             for (i = 0; place = places[i]; i++) {
@@ -243,7 +245,7 @@
 
         map.fitBounds(bounds);
         searchBox.set('map', map);
-        map.setZoom(Math.min(map.getZoom(),12));
+        map.setZoom(Math.min(map.getZoom(),20));
 
       });
 

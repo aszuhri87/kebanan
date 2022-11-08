@@ -234,7 +234,7 @@
         const myLatlng = { lat: parseFloat(data_unit.latitude), lng: parseFloat(data_unit.longitude) };
 
         const myOptions = {
-          zoom: 10,
+          zoom: 14,
           center: myLatlng,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true
@@ -284,23 +284,24 @@
 
         google.maps.event.addListener(searchBox, 'places_changed', function() {
 
-            searchBox.set('map', null);
+        searchBox.set('map', null);
 
-            const options = {
-                componentRestrictions: {
-                    country: "id"
-                },
-                fields: ["address_components", "geometry", "name"],
-                strictBounds: false,
-                types: ["establishment"],
-            };
+        const options = {
+            componentRestrictions: {
+                country: "id"
+            },
+            fields: ["address_components", "geometry", "name"],
+            strictBounds: false,
+            types: ["establishment"],
+        };
 
-            const autocomplete = new google.maps.places.Autocomplete(input, options);
+        const autocomplete = new google.maps.places.Autocomplete(input, options);
 
-            var places = searchBox.getPlaces();
+        var places = searchBox.getPlaces();
+        var bounds = new google.maps.LatLngBounds();
 
-            var i, place;
-            for (i = 0; place = places[i]; i++) {
+        var i, place;
+        for (i = 0; place = places[i]; i++) {
                 var marker = new google.maps.Marker({
                     position: place.geometry.location,
                     title: place.name,
@@ -320,13 +321,14 @@
 
                 $('#latitude').val(node.lat);
                 $('#longitude').val(node.lng);
-            }
+        }
 
         map2.fitBounds(bounds);
         searchBox.set('map', map2);
-        map2.setZoom(Math.min(map2.getZoom(),12));
+        map2.setZoom(Math.min(map2.getZoom(),20));
 
       });
+
 
       map.setCenter(myLatlng);
       map2.setCenter(myLatlng);

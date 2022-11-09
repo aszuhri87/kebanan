@@ -372,7 +372,7 @@
     @include('script')
 
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY&libraries=places&callback=myMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj_bRjxZDlmaH8c0e0qKIpUTFF05g1nd0&libraries=places&callback=myMap">
     </script>
 
 </body>

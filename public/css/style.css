@@ -84,7 +84,6 @@ body {
 /* about */
 .about-container {
     height: 90vh;
-    margin-top: -150px;
 }
 
 .about-text_green {
@@ -770,8 +769,7 @@ body {
 
     /* about */
     .about-container {
-        height: 100vh;
-        margin-top: -150px;
+        height: 80vh;
     }
 
     .about-text_green {

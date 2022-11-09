@@ -25,7 +25,7 @@
             <div>
                 <ul class="d-flex header-navigation">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#googleMap">Solution</a></li>
+                    <li><a href="#findService">Solution</a></li>
                     <li><a href="#solution">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -76,7 +76,7 @@
     </div>
 
     <!-- find-service -->
-    <div class="find-service">
+    <div class="find-service" id="findService">
         <div class="find-service_container">
             <p class="find-service_header">Find Your Service Here</p>
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -351,7 +351,7 @@
                             <a class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#googleMap">Solution</a>
+                            <a class="nav-link" href="#findService">Solution</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#solution">About</a>

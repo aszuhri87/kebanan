@@ -46,10 +46,11 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
 
     Route::post('user/update/{id}', function (Request $request, $id) {
         $user = \App\Models\Admin::find($id);
+
         $user->update([
             'nama' => $request->nama,
             'email' => $request->email,
-            'password' => Hash::make($request->password) ? Hash::make($request->password) : $user->password,
+            'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
         ]);
 
         return Redirect::back();

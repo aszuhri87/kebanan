@@ -59,9 +59,6 @@ Route::post('/', function (Request $request) {
     if ($request->jenisService != null) {
         if ($request->jenisService == 'antar') {
             $search->where('terima_panggilan', 1);
-        } else {
-            $search->where('terima_panggilan', 0);
-            $search->orWhere('terima_panggilan', null);
         }
     }
 

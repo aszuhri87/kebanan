@@ -39,7 +39,9 @@ Route::post('/', function (Request $request) {
     if ($request->tipeKendaraan != null) {
         if ($request->tipeKendaraan == 'mobil') {
             $search->where('terima_mobil', 1);
-        } else {
+        }
+
+        if ($request->tipeKendaraan == 'motor') {
             $search->where('terima_motor', 1);
         }
     }
@@ -47,7 +49,9 @@ Route::post('/', function (Request $request) {
     if ($request->tipeBan != null) {
         if ($request->tipeBan == 'tubles') {
             $search->where('terima_tubles', 1);
-        } else {
+        }
+
+        if ($request->tipeBan == 'biasa') {
             $search->where('terima_non_tubles', 1);
         }
     }

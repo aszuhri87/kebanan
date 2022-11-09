@@ -20,21 +20,21 @@ Route::get('/', function () {
 
 Route::post('/', function (Request $request) {
     $search = \App\Models\Bengkel::select([
-        'id',
-        'latitude as lat',
-        'longitude as lng',
-        'nama_bengkel as namaBengkel',
-        'alamat as alamatBengkel',
-        'terima_tubles as tubles',
-        'foto_bengkel',
-        'terima_motor',
-        'terima_mobil',
-        'terima_non_tubles as nonTubles',
-        'terima_panggilan as repairOnDelivery',
-        'terima_kendaraan_berat',
-        'nomor_hp',
-    ])
-    ->whereNull('deleted_at');
+            'id',
+            'latitude as lat',
+            'longitude as lng',
+            'nama_bengkel as namaBengkel',
+            'alamat as alamatBengkel',
+            'terima_tubles as tubles',
+            'foto_bengkel',
+            'terima_motor',
+            'terima_mobil',
+            'terima_non_tubles as nonTubles',
+            'terima_panggilan as repairOnDelivery',
+            'terima_kendaraan_berat',
+            'nomor_hp',
+        ])
+        ->whereNull('deleted_at');
 
     if ($request->tipeKendaraan != null) {
         if ($request->tipeKendaraan == 'mobil') {
@@ -66,6 +66,7 @@ Route::post('/', function (Request $request) {
     }
 
     $results = $search->get();
+    $result = [];
 
     foreach ($results as $cari) {
         $latFrom = deg2rad((float) $cari->lat);
@@ -86,9 +87,9 @@ Route::post('/', function (Request $request) {
     }
 
     return response()->json([
-        'status' => 'success',
-        'data' => $result,
-        'message' => 'Information saved successfully!',
+            'status' => 'success',
+            'data' => $result,
+            'message' => 'Information load successfully!',
     ], 200);
 });
 

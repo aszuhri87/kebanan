@@ -168,7 +168,6 @@
 
     // search bengkel
     function searchBengkel() {
-
         // Desktop
         let makerLat = myMarker.position.lat();
         let makerLng = myMarker.position.lng();
@@ -330,6 +329,10 @@
                     }
                 }
             })
+        } else {
+            if (bengkelMarkers && bengkelMarkers.setMap) {
+                bengkelMarkers.setMap(null);
+            }
         }
     }
 

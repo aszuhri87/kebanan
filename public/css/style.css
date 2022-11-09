@@ -83,7 +83,7 @@ body {
 
 /* about */
 .about-container {
-    height: 120vh;
+    height: 90vh;
     margin-top: -150px;
 }
 
@@ -123,18 +123,12 @@ body {
 
 /* find-service */
 .find-service {
-    position: absolute;
-    width: 1140px;
-    height: 380px;
-    top: calc(50% - 380px / 2 - 350px);
-    left: calc(50% - 1140px / 2);
     background: #ffffff;
     box-shadow: 4px 4px 4px 4px rgba(28, 168, 126, 0.03);
-    border-radius: 20px;
 }
 
 .find-service_container {
-    padding: 60px 120px 60px 120px;
+    padding: 60px 320px 60px 320px;
 }
 
 .find-service_header {
@@ -222,9 +216,9 @@ body {
 }
 
 /* map */
-.map-container {
+/* .map-container {
     position: relative;
-}
+} */
 
 .map-style {
     height: 701px;
@@ -553,18 +547,13 @@ body {
     /* find service mobile */
     .find-service-mobile {
         display: block;
-        position: absolute;
-        width: 330px;
         height: 265px;
-        top: calc(100% - 280px);
-        left: calc(50% - 330px / 2);
         background: #ffffff;
         box-shadow: 4px 3px 4px 4px rgba(28, 168, 126, 0.03);
-        border-radius: 5px;
     }
 
     .find-service_container-mobile {
-        padding: 10px 15px;
+        padding: 10px 50px;
     }
 
     .find-service_header-mobile {
@@ -805,16 +794,8 @@ body {
         line-height: 28px;
     }
 
-    /* find-service */
-    .find-service {
-        width: 750px;
-        height: 300px;
-        top: calc(100% - 850px);
-        left: calc(50% - 750px / 2);
-    }
-
     .find-service_container {
-        padding: 35px 70px 35px 70px;
+        padding: 35px 80px 35px 80px;
     }
 
     .find-service_header {
@@ -929,13 +910,6 @@ body {
 /* Responsive desktop */
 @media (min-width: 991px) and (max-width: 1150px) {
     /* find-service */
-    .find-service {
-        width: 1000px;
-        height: 370px;
-        top: calc(50% - 370px / 2 - 350px);
-        left: calc(50% - 1000px / 2);
-    }
-
     .find-service_container {
         padding: 50px 110px 50px 110px;
     }

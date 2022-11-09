@@ -75,110 +75,111 @@
         </div>
     </div>
 
+    <!-- find-service -->
+    <div class="find-service">
+        <div class="find-service_container">
+            <p class="find-service_header">Find Your Service Here</p>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex find-service_search">
+                    <img src="images/location.svg" alt="Search Location" />
+                    <input id="pac-input" type="text" placeholder="Search Location"
+                        class="find-service_input controls" />
+                </div>
+                <button class="find-service_button" onclick="myLocation()"><img src="images/center.svg"
+                        alt="" /></button>
+            </div>
+
+            <div class="row">
+                <form id="form-cari-bengkel">
+                    <div class="col d-flex justify-content-between">
+                        <div class="d-flex find-service_type">
+                            <img src="images/type.svg" alt="Type Kendaraan" />
+                            <select id="tipeKendaraan" class="form-select">
+                                <option value="">Tipe Kendaraan</option>
+                                <option value="motor">Motor</option>
+                                <option value="mobil">Mobil</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex find-service_type">
+                            <img src="images/tire.svg" alt="Type Ban" />
+                            <select id="tipeBan" class="form-select">
+                                <option value="">Tipe Ban</option>
+                                <option value="biasa">Biasa</option>
+                                <option value="tubles">Tubles</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex find-service_type">
+                            <img src="images/service.svg" alt="Jenis Service" />
+                            <select id="jenisService" class="form-select">
+                                <option value="">Jenis Service</option>
+                                <option value="antar">Antar Jemput</option>
+                                <option value="biasa">Biasa</option>
+                            </select>
+                        </div>
+                    </div>
+            </div>
+
+            <button onclick="searchBengkel()" type="button"
+                class="btn btn-success btn-search button-green mx-auto mt-5">Cari Bengkel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- find service mobile -->
+    <div class="find-service-mobile">
+        <div class="find-service_container-mobile">
+            <p class="find-service_header-mobile">Find Your Service Here</p>
+
+            <div class="row d-flex justify-content-between gap-2">
+                <div class="d-flex align-items-center find-service_type-mobile">
+                    <div class="d-flex align-items-center">
+                        <img src="images/location.svg" alt="Search Location" />
+                        <input id="pac-input-mobile" type="text" placeholder="Search Location"
+                            class="find-service_input-mobile controls" />
+                    </div>
+                    <img src="images/center.svg" alt="Find Location" class="find-service_button-mobile"
+                        onclick="myLocation()" />
+                </div>
+
+                <div class="d-flex find-service_type-mobile">
+                    <img src="images/type.svg" alt="Type Kendaraan" />
+                    <select id="tipeKendaraanMobile" class="form-select form-select-sm">
+                        <option value="">Tipe Kendaraan</option>
+                        <option value="motor">Motor</option>
+                        <option value="mobil">Mobil</option>
+                    </select>
+                </div>
+
+                <div class="d-flex find-service_type-mobile">
+                    <img src="images/tire.svg" alt="Type Ban" />
+                    <select id="tipeBanMobile" class="form-select form-select-sm">
+                        <option value="">Tipe Ban</option>
+                        <option value="biasa">Biasa</option>
+                        <option value="tubles">Tubles</option>
+                    </select>
+                </div>
+
+                <div class="d-flex find-service_type-mobile">
+                    <img src="images/service.svg" alt="Jenis Service" />
+                    <select id="jenisServiceMobile" class="form-select form-select-sm">
+                        <option value="">Jenis Service</option>
+                        <option value="antar">Antar Jemput</option>
+                        <option value="biasa">Biasa</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="searchBengkel()"
+                class="button-green d-flex justify-content-between align-items-center float-end mt-3"><img
+                    src="images/find.svg" />Cari Tambal Ban</button>
+        </div>
+    </div>
+
     <!-- map -->
     <div class="map-container">
         <div id="googleMap" class="map-style"></div>
-        <!-- find-service -->
-        <div class="find-service">
-            <div class="find-service_container">
-                <p class="find-service_header">Find Your Service Here</p>
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div class="d-flex find-service_search">
-                        <img src="images/location.svg" alt="Search Location" />
-                        <input id="pac-input" type="text" placeholder="Search Location"
-                            class="find-service_input controls" />
-                    </div>
-                    <button class="find-service_button" onclick="myLocation()"><img src="images/center.svg"
-                            alt="" /></button>
-                </div>
-
-                <div class="row">
-                    <form id="form-cari-bengkel">
-                        <div class="col d-flex justify-content-between">
-                            <div class="d-flex find-service_type">
-                                <img src="images/type.svg" alt="Type Kendaraan" />
-                                <select id="tipeKendaraan" class="form-select">
-                                    <option value="">Tipe Kendaraan</option>
-                                    <option value="motor">Motor</option>
-                                    <option value="mobil">Mobil</option>
-                                </select>
-                            </div>
-
-                            <div class="d-flex find-service_type">
-                                <img src="images/tire.svg" alt="Type Ban" />
-                                <select id="tipeBan" class="form-select">
-                                    <option value="">Tipe Ban</option>
-                                    <option value="biasa">Biasa</option>
-                                    <option value="tubles">Tubles</option>
-                                </select>
-                            </div>
-
-                            <div class="d-flex find-service_type">
-                                <img src="images/service.svg" alt="Jenis Service" />
-                                <select id="jenisService" class="form-select">
-                                    <option value="">Jenis Service</option>
-                                    <option value="antar">Antar Jemput</option>
-                                    <option value="biasa">Biasa</option>
-                                </select>
-                            </div>
-                        </div>
-                </div>
-
-                <button onclick="searchBengkel()" type="button"
-                    class="btn btn-success btn-search button-green mx-auto mt-5">Cari Bengkel</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- find service mobile -->
-        <div class="find-service-mobile">
-            <div class="find-service_container-mobile">
-                <p class="find-service_header-mobile">Find Your Service Here</p>
-
-                <div class="row d-flex justify-content-between gap-2">
-                    <div class="d-flex align-items-center find-service_type-mobile">
-                        <div class="d-flex align-items-center">
-                            <img src="images/location.svg" alt="Search Location" />
-                            <input id="pac-input-mobile" type="text" placeholder="Search Location"
-                                class="find-service_input-mobile controls" />
-                        </div>
-                        <img src="images/center.svg" alt="Find Location" class="find-service_button-mobile"
-                            onclick="myLocation()" />
-                    </div>
-
-                    <div class="d-flex find-service_type-mobile">
-                        <img src="images/type.svg" alt="Type Kendaraan" />
-                        <select id="tipeKendaraanMobile" class="form-select form-select-sm">
-                            <option value="">Tipe Kendaraan</option>
-                            <option value="motor">Motor</option>
-                            <option value="mobil">Mobil</option>
-                        </select>
-                    </div>
-
-                    <div class="d-flex find-service_type-mobile">
-                        <img src="images/tire.svg" alt="Type Ban" />
-                        <select id="tipeBanMobile" class="form-select form-select-sm">
-                            <option value="">Tipe Ban</option>
-                            <option value="biasa">Biasa</option>
-                            <option value="tubles">Tubles</option>
-                        </select>
-                    </div>
-
-                    <div class="d-flex find-service_type-mobile">
-                        <img src="images/service.svg" alt="Jenis Service" />
-                        <select id="jenisServiceMobile" class="form-select form-select-sm">
-                            <option value="">Jenis Service</option>
-                            <option value="antar">Antar Jemput</option>
-                            <option value="biasa">Biasa</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button onclick="searchBengkel()"
-                    class="button-green d-flex justify-content-between align-items-center float-end mt-3"><img
-                        src="images/find.svg" />Cari Tambal Ban</button>
-            </div>
-        </div>
     </div>
 
     <!-- cta -->

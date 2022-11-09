@@ -221,6 +221,7 @@
     }
 
     function showAllBengkel(position) {
+
         if (bengkelMarkers && bengkelMarkers.setMap) {
             bengkelMarkers.setMap(null);
         }
@@ -241,9 +242,6 @@
             disableDefaultUI: true,
             styles: styleMap,
         };
-
-        let makerLat = myMarker.position.lat();
-        let makerLng = myMarker.position.lng();
 
         // ALL BENGKEL
         if (Array.isArray(locationBengkel)){
@@ -333,10 +331,6 @@
                 }
             })
         }
-    }
-
-    function deg2rad(deg) {
-      return deg * (Math.PI/180);
     }
 
     function chatWhatsapp(phone) {

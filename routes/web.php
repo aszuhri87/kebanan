@@ -60,6 +60,11 @@ Route::post('/', function (Request $request) {
         if ($request->jenisService == 'antar') {
             $search->where('terima_panggilan', 1);
         }
+
+        if ($request->jenisService == 'biasa') {
+            $search->where('terima_panggilan', 0);
+            $search->orWhere('terima_panggilan', 1);
+        }
     }
 
     $results = $search->get();

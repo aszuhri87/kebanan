@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kebanan - Solusi Permasalahan Ban Anda</title>
-    <link rel="icon" type="image/x-icon" href="{{asset('images/pin.svg')}}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/pin.svg') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -19,7 +19,7 @@
     <div class="header">
         <nav class="container d-flex justify-content-between align-items-baseline">
             <div>
-                <a href="#"><img src="{{asset('images/logo-kebanan.svg')}}" alt="Kebanan Logo" width="163px"
+                <a href="#"><img src="{{ asset('images/logo-kebanan.svg') }}" alt="Kebanan Logo" width="163px"
                         height="81px" /></a>
             </div>
             <div>
@@ -82,7 +82,7 @@
         <div class="find-service">
             <div class="find-service_container">
                 <p class="find-service_header">Find Your Service Here</p>
-                <div class="d-flex justify-content-between mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
                     <div class="d-flex find-service_search">
                         <img src="images/location.svg" alt="Search Location" />
                         <input id="pac-input" type="text" placeholder="Search Location"
@@ -189,7 +189,8 @@
 
         <div class="col">
             <h1 class="cta-header">Belum Terdaftar di KEBANAN?</h1>
-            <p class="cta-text">Daftarkan bengkel tambal ban anda bersama KEBANAN untuk mempemudah masyarakat yang sedang mencari tambal ban disekitar lokasi mereka.</p>
+            <p class="cta-text">Daftarkan bengkel tambal ban anda bersama KEBANAN untuk mempemudah masyarakat yang
+                sedang mencari tambal ban disekitar lokasi mereka.</p>
             <button class="button-white">Daftar Sekarang</button>
         </div>
     </div>
@@ -290,7 +291,8 @@
     <!-- questions -->
     <div id="contact" class="text-center questions-container mb-4">
         <h1 class="questions-header">Ada pertanyaan tentang Kebanan?, Hubungi kami!</h1>
-        <p class="questions-text">Jika pertanyaan anda belum terjawab, jangan ragu untuk menghubungi kami dengan menekan tombol dibawah ini.</p>
+        <p class="questions-text">Jika pertanyaan anda belum terjawab, jangan ragu untuk menghubungi kami dengan
+            menekan tombol dibawah ini.</p>
         <button class="button-white mx-auto questions-button">Hubungi Sekarang</button>
     </div>
 
@@ -298,7 +300,8 @@
     <div class="container d-flex align-items-baseline mb-4 gap-5 footer">
         <div class="col">
             <img src="images/logo-kebanan.svg" alt="Kebanan Logo" width="150px" />
-            <p class="footer-text_black">We provide you with the solution you need for your emergency situation at ease. Finding and contact faster than before.</p>
+            <p class="footer-text_black">We provide you with the solution you need for your emergency situation at
+                ease. Finding and contact faster than before.</p>
         </div>
 
         <div class="col">
@@ -329,15 +332,17 @@
     <nav class="navbar bg-light fixed-bottom navbar-mobile">
         <div class="container-fluid">
             <a href="#"><img src="images/logo-kebanan.svg" alt="Kebanan Logo" class="navbar-brand" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <a href="#"><img src="images/logo-kebanan.svg" alt="Kebanan Logo" class="navbar-brand" /></a>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <a href="#"><img src="images/logo-kebanan.svg" alt="Kebanan Logo"
+                            class="navbar-brand" /></a>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -360,11 +365,13 @@
     </nav>
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
 
     @include('script')
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY&libraries=places&callback=myMap">
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY&libraries=places&callback=myMap">
     </script>
 
 </body>

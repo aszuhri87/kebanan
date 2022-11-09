@@ -128,7 +128,7 @@
     </div>
 
     <!-- find service mobile -->
-    <div class="find-service-mobile">
+    <div class="find-service-mobile" id="findService-mobile">
         <div class="find-service_container-mobile">
             <p class="find-service_header-mobile">Find Your Service Here</p>
 
@@ -351,7 +351,7 @@
                             <a class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#findService">Solution</a>
+                            <a class="nav-link" href="#findService-mobile">Solution</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#solution">About</a>

@@ -911,4 +911,21 @@ body {
     .find-service_container {
         padding: 50px 110px 50px 110px;
     }
+
+    .find-service_search {
+        width: calc(100% - 48px);
+    }
+}
+
+@media (min-width: 1150px) {
+    /* find-service */
+    .find-service_search {
+        width: calc(100% - 48px);
+    }
+}
+
+@media (min-width: 1500px) {
+    .find-service_type {
+        width: calc(100% - 40px);
+    }
 }

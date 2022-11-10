@@ -33,6 +33,10 @@
         }
         .modal-backdrop{
             z-index: 10;
+        }
+
+        .btn {
+            border-radius: 10px;
         }​
 
     </style>

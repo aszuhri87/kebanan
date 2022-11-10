@@ -21,6 +21,7 @@
                     <th scope="col" class="text-center">Alamat</th>
                     <th scope="col" class="text-center">Nomor Hp</th>
                     <th scope="col" class="text-center">Aksi</th>
+                    <th scope="col" class="text-center">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,9 +33,19 @@
                     <td class="text-center">{{$item->alamat}}</td>
                     <td class="text-center">{{$item->nomor_hp}}</td>
                     <td class="text-center">
-                        <a class="btn btn-success m-0"
+                        <a class="btn btn-sm btn-success m-0"
                             href="{{url('/admin/bengkel/'.$item->id)}}">Detail</a>
-                        <a class="btn btn-danger m-0" href="{{url('/admin/bengkel/delete/'.$item->id)}}" onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?');">Hapus</a>
+                        <a class="btn btn-sm btn-danger m-0" href="{{url('/admin/bengkel/delete/'.$item->id)}}" onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?');">Hapus</a>
+                    </td>
+                    <td class="text-center">
+                        <form id="form-status" method="POST" >
+                            <div class="custom-control custom-switch">
+                                <input type="hidden" id="itemId" value="{{$item->id}}">
+                                <input type="hidden" name="status" value="{{$item->status}}">
+                                <input type="checkbox" class="custom-control-input switch" {{  ($item->status == 1 ? ' checked' : '') }} id="switch{{$item->id}}" onclick="this.previousSibling.value=1-this.previousSibling.value; return confirm('Apakah kamu yakin ingin mengubah status bengkel ini?');">
+                                <label class="custom-control-label" for="switch{{$item->id}}">  </label>
+                            </div>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -121,7 +132,6 @@
                         <input type="hidden" name="terima_kendaraan_berat" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label for="terima_kendaraan_berat" class="form-check-label" for="terima_kendaraan_berat">Terima Kendaraan Berat</label>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -138,6 +148,48 @@
 <script>
     $(document).ready(function () {
         $('.dropify').dropify();
+
+        var status = $('input[name=status]').val();
+
+        var statusLabel =  $('#form-status').find('label');
+
+        if (status == 1){
+            statusLabel.text("Aktif");
+        } else {
+            statusLabel.text("Nonaktif");
+        }
+
+        $('#form-status').find('input[type=checkbox]').on('change', function() {
+            if (statusLabel.text() === "Aktif") {
+                statusLabel.text("Nonaktif");
+                status -= 1;
+            } else {
+                statusLabel.text("Aktif");
+                $(this).attr('checked');
+                status += 1;
+            }
+
+            let statusId = document.getElementById("itemId").value;
+
+            //post data
+            $.ajax({
+                url: "/admin/bengkel/status/" + statusId,
+                type: "POST",
+                async: false,
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "status": status,
+                }
+            })
+            .done(function(res, xhr, meta) {
+                console.log('succcess');
+            })
+            .fail(function(res, error) {
+                console.error(res.responseJSON.message, 'Gagal')
+            })
+            .always(function() { });
+        });
 
         $('.btn-simpan').click(function () {
             $.blockUI({

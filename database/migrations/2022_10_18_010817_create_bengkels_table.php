@@ -29,6 +29,7 @@ class CreateBengkelsTable extends Migration
             $table->boolean('terima_mobil')->default(0)->nullable();
             $table->boolean('terima_motor')->default(0)->nullable();
             $table->boolean('terima_kendaraan_berat')->default(0)->nullable();
+            $table->boolean('status')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

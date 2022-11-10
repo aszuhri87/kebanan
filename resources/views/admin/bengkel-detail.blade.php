@@ -13,7 +13,6 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
     <a href="{{url('admin/bengkel')}}" class="btn btn-danger m-0">Kembali</a>
     <div>
-
         <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal{{$bengkel->id}}">
             Edit
         </button>

@@ -34,6 +34,7 @@ Route::post('/', function (Request $request) {
             'terima_kendaraan_berat',
             'nomor_hp',
         ])
+        ->where('status', 1)
         ->whereNull('deleted_at');
 
     if ($request->tipeKendaraan != null) {

@@ -102,4 +102,13 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
 
         return Redirect::back();
     });
+
+    Route::post('bengkel/status/{id}', function (Request $request, $id) {
+        $status = \App\Models\Bengkel::find($id);
+        $status->update([
+            'status' => $request->status,
+        ]);
+
+        return Redirect::back();
+    });
 });

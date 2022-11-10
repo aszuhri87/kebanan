@@ -28,6 +28,7 @@ class Bengkel extends Model
         'terima_mobil',
         'terima_motor',
         'terima_kendaraan_berat',
+        'status',
     ];
 
     protected $casts = [
@@ -37,6 +38,7 @@ class Bengkel extends Model
         'terima_mobil' => 'boolean',
         'terima_motor' => 'boolean',
         'terima_kendaraan_berat' => 'boolean',
+        'status' => 'boolean',
     ];
 
     protected $dates = ['deleted_at'];

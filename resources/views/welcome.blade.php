@@ -50,33 +50,31 @@
 
         <div class="col">
             <h1 class="about-text_green">TENTANG KEBANAN</h1>
-            <h2 class="about-text_black">Solusi Permasalahan Ban Anda</h2>
             <p class="about-text_gray">
-                <span class="about-text_green">KEBANAN</span> membantu anda dalam mencari bengkel tambal ban di sekitar
-                anda ketika ban anda bocor, cukup masukan informasi mengenai kendaraan anda, kemudian cari lokasi
-                bengkel tambal ban terdekat,
-                hubungi bengkel. Kenapa anda harus menggunakan KEBANAN:
+                Melalui <span class="about-text_green">KEBANAN</span>, kami ingin menciptakan pemberdayaan ekonomi
+                berkelanjutan bagi masyarakat yang berprofesi sebagai tenaga ahli tambal ban dan membantu masyarakat
+                menemukan solusi tambal ban disekitar saat ban bocor terjadi. Kami berkomitmen memberikan layanan:
             </p>
             <ul class="about-text_gray">
                 <li>
                     <img class="about-icon" src="images/checklist.svg" alt="Icon 1" width="20px" />
-                    <span>Pelayanan Cepat</span>
+                    <span>Layanan Cepat</span>
                 </li>
                 <li>
                     <img class="about-icon" src="images/checklist.svg" alt="Icon 1" width="20px" />
-                    <span>Mudah & Terpercaya</span>
+                    <span>Mudah digunakan</span>
                 </li>
                 <li>
                     <img class="about-icon" src="images/checklist.svg" alt="Icon 1" width="20px" />
-                    <span>Harga Terjangkau</span>
+                    <span>Tenaga ahli Terpercaya</span>
                 </li>
             </ul>
-            <a class="btn btn-success button-green" href="#googleMap">Pesan Sekarang</a>
+            <a class="btn btn-success button-green" href="#findService" id="findService">Pesan Sekarang</a>
         </div>
     </div>
 
     <!-- find-service -->
-    <div class="find-service" id="findService">
+    <div class="find-service">
         <div class="find-service_container">
             <p class="find-service_header">Find Your Service Here</p>
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -114,8 +112,8 @@
                             <img src="images/service.svg" alt="Jenis Service" />
                             <select id="jenisService" class="form-select">
                                 <option value="">Jenis Service</option>
-                                <option value="antar">Antar Jemput</option>
-                                <option value="biasa">Biasa</option>
+                                <option value="antar">Pelayanan di jalan</option>
+                                <option value="biasa">Datang ke bengkel</option>
                             </select>
                         </div>
                     </div>
@@ -191,7 +189,7 @@
         <div class="col">
             <h1 class="cta-header">Belum Terdaftar di KEBANAN?</h1>
             <p class="cta-text">Daftarkan bengkel tambal ban anda bersama KEBANAN untuk mempemudah masyarakat yang
-                sedang mencari tambal ban disekitar lokasi mereka.</p>
+                mencari tambal ban disekitar lokasi mereka.</p>
             <button class="button-white">Daftar Sekarang</button>
         </div>
     </div>
@@ -300,9 +298,11 @@
     <!-- footer -->
     <div class="container d-flex align-items-baseline mb-4 gap-5 footer">
         <div class="col">
+            <img src="images/ust.png" alt="Kebanan Logo" width="50px" />
             <img src="images/logo-kebanan.svg" alt="Kebanan Logo" width="150px" />
-            <p class="footer-text_black">We provide you with the solution you need for your emergency situation at
-                ease. Finding and contact faster than before.</p>
+            <p class="footer-text_black">KEBANAN merupakan karya mahasiswa Universitas Sarjanawiyata Tamansiswa hasil
+                kejuaraan Program Inovasi Wirausaha Digital Mahasiswa Kementerian Pendidikan dan Kebudayaan Indonesia
+            </p>
         </div>
 
         <div class="col">
@@ -316,8 +316,8 @@
 
         <div class="col">
             <h1 class="footer-header_black">Info Kontak</h1>
-            <p class="footer-text_gray">Jl. Siliwangi No.32G, Area Sawah, Nogotirto, Kec. Gamping, Kabupaten Sleman,
-                Daerah Istimewa Yogyakarta 55592</p>
+            <p class="footer-text_gray">Jl. Kusumanegara No.157, Muja Muju, Kec. Umbulharjo, Kota Yogyakarta, Daerah
+                Istimewa Yogyakarta 55167</p>
             <p class="footer-text_gray">info@kebanan.id</p>
         </div>
     </div>

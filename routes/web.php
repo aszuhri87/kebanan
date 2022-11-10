@@ -100,6 +100,38 @@ Route::post('/', function (Request $request) {
     ], 200);
 });
 
+Route::post('daftar-bengkel', function (Request $request) {
+    if ($request->hasFile('foto_bengkel')) {
+        $file = $request->file('foto_bengkel');
+        $nama = str_replace(' ', '_', $request->nama_bengkel).'_'.date('Y-m-d_s').'_.'.$file->extension();
+        $file->move(public_path().'/foto', $nama);
+
+        $foto = '/foto/'.$nama;
+    } else {
+        $foto = $request->foto_bengkel;
+    }
+
+    \App\Models\Bengkel::create([
+        'nama_bengkel' => $request->nama_bengkel,
+        'nama_pemilik' => $request->nama_pemilik,
+        'alamat' => $request->alamat,
+        'keterangan' => $request->keterangan,
+        'nomor_hp' => $request->nomor_hp,
+        'longitude' => $request->longitude,
+        'latitude' => $request->latitude,
+        'foto_bengkel' => $foto,
+        'terima_tubles' => $request->terima_tubles,
+        'terima_tubles' => $request->terima_tubles,
+        'terima_non_tubles' => $request->terima_non_tubles,
+        'terima_panggilan' => $request->terima_panggilan,
+        'terima_mobil' => $request->terima_mobil,
+        'terima_motor' => $request->terima_motor,
+        'terima_kendaraan_berat' => $request->terima_kendaraan_berat,
+    ]);
+
+    return Redirect::back()->with('message', 'Berhasil Mendaftar!');
+});
+
 include base_path('routes/admin/admin.php');
 include base_path('routes/admin/bengkel.php');
 include base_path('routes/admin/user.php');

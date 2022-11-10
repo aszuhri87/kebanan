@@ -20,12 +20,12 @@
     <div class="header">
         <nav class="container d-flex justify-content-between align-items-baseline">
             <div>
-                <a href="#"><img src="{{ asset('images/logo-kebanan.svg') }}" alt="Kebanan Logo" width="163px"
+                <a href="/"><img src="{{ asset('images/logo-kebanan.svg') }}" alt="Kebanan Logo" width="163px"
                         height="81px" /></a>
             </div>
             <div>
                 <ul class="d-flex header-navigation">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="#findService">Solution</a></li>
                     <li><a href="#solution">About</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -33,7 +33,6 @@
             </div>
         </nav>
     </div>
-
 
     <!-- header form -->
     <div class="container text-center mt-5">
@@ -43,31 +42,37 @@
     </div>
 
     <!-- form -->
-    <form class="container container-form_mobile w-75 mx-auto mt-5">
+    <form class="container container-form_mobile w-75 mx-auto mt-5" id="form-daftar"  action="{{url('daftar-bengkel')}}" method="post" enctype="multipart/form-data">
+        @csrf
+        @if(session('message'))
+            <div class="alert alert-success mt-5" role="alert">
+                    {{session('message')}}
+            </div>
+        @endif
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">Nama Bengkel <span class="text-danger">*</span> </label>
-                <input type="text" class="form-control" placeholder="Masukkan nama bengkel..." required />
+                <input type="text" name="nama_bengkel" class="form-control" placeholder="Masukkan nama bengkel..." required />
             </div>
             <div class="col mb-4">
                 <label class="form-label">Nama Pemilik <span class="text-danger">*</span> </label>
-                <input type="text" class="form-control" placeholder="Masukan nama pemilik..." required />
+                <input type="text" name="nama_pemilik" class="form-control" placeholder="Masukan nama pemilik..." required />
             </div>
         </div>
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">No HP <span class="text-danger">*</span> </label>
-                <input type="text" class="form-control" placeholder="Masukan no HP..." required />
+                <input type="text" name="nomor_hp" class="form-control" placeholder="Masukan no HP..." required />
             </div>
             <div class="col mb-4">
                 <label class="form-label">Keterangan <span class="text-danger">*</span> </label>
-                <input type="text" class="form-control" placeholder="Masukan keterangan bengkel anda..." required />
+                <input type="text" name="keterangan" class="form-control" placeholder="Masukan keterangan bengkel anda..." required />
             </div>
         </div>
         <div class="row gap-5">
             <div class="col mb-4">
                 <label class="form-label">Alamat <span class="text-danger">*</span> </label>
-                <input type="text" class="form-control" placeholder="Masukan alamat bengkel anda..." required />
+                <input type="text" name="alamat" class="form-control" placeholder="Masukan alamat bengkel anda..." required />
             </div>
         </div>
 
@@ -81,44 +86,44 @@
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">Latitude</label>
-                <input type="text" class="form-control" />
+                <input type="text" name="latitude" id="latitude" class="form-control" />
             </div>
             <div class="col mb-4">
                 <label class="form-label">Longitude </label>
-                <input type="text" class="form-control" />
+                <input type="text" name="longitude" id="longitude" class="form-control" />
             </div>
         </div>
 
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">Foto Bengkel <span class="text-danger">*</span> </label>
-                <input type="file" class="dropify d-block" data-height="300" />
+                <input type="file" name="foto_bengkel" class="dropify d-block" data-height="300" />
             </div>
             <div class="col mb-4">
                 <label class="form-label">Jenis Layanan <span class="text-danger">*</span> </label>
                 <div class="form-check">
                     <div class="d-flex align-items-end mb-2">
-                        <input class="form-check-input" type="checkbox" value="" />
+                        <input type="hidden" name="terima_tubles" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Tubles</label>
                     </div>
                     <div class="d-flex align-items-end mb-2">
-                        <input class="form-check-input" type="checkbox" value="" />
+                        <input type="hidden" name="terima_non_tubles" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima non Tubles</label>
                     </div>
                     <div class="d-flex align-items-end mb-2">
-                        <input class="form-check-input" type="checkbox" value="" />
+                        <input type="hidden" name="terima_panggilan" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Panggilan</label>
                     </div>
                     <div class="d-flex align-items-end mb-2">
-                        <input class="form-check-input" type="checkbox" value="" />
+                        <input type="hidden" name="terima_motor" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Motor</label>
                     </div>
                     <div class="d-flex align-items-end mb-2">
-                        <input class="form-check-input" type="checkbox" value="" />
+                        <input type="hidden" name="terima_mobil" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Mobil</label>
                     </div>
                     <div class="d-flex align-items-end">
-                        <input class="form-check-input" type="checkbox" value="" />
+                        <input type="hidden" name="terima_kendaraan_berat" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Kendaraan Berat</label>
                     </div>
                 </div>
@@ -200,10 +205,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
 
-    @include('script')
+    @include('script-pendaftaran')
 
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj_bRjxZDlmaH8c0e0qKIpUTFF05g1nd0&libraries=places&callback=myMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJfzOqR9u2eyXv6OaiuExD3jzoBGGIVKY&libraries=places&callback=myMap">
     </script>
     <script>
         $(document).ready(function() {
@@ -214,3 +219,4 @@
 </body>
 
 </html>
+

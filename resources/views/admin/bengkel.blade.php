@@ -38,12 +38,11 @@
                         <a class="btn btn-sm btn-danger m-0" href="{{url('/admin/bengkel/delete/'.$item->id)}}" onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?');">Hapus</a>
                     </td>
                     <td class="text-center">
-                        <form id="form-status" method="POST" >
+                        <form id="form-status{{$item->id}}" action="{{url('/admin/bengkel/status/'.$item->id)}}" method="post">
+                            @csrf
                             <div class="custom-control custom-switch">
-                                <input type="hidden" id="itemId" value="{{$item->id}}">
-                                <input type="hidden" name="status" value="{{$item->status}}">
-                                <input type="checkbox" class="custom-control-input switch" {{  ($item->status == 1 ? ' checked' : '') }} id="switch{{$item->id}}" onclick="this.previousSibling.value=1-this.previousSibling.value; return confirm('Apakah kamu yakin ingin mengubah status bengkel ini?');">
-                                <label class="custom-control-label" for="switch{{$item->id}}">  </label>
+                                <input type="checkbox" name="status" class="custom-control-input" value="{{!$item->status}}" {{  ($item->status == 1 ? ' checked' : '') }} id="switch{{$item->id}}" onclick="submitStatus({{$item->id}})">
+                                <label class="custom-control-label" id="label{{$item->id}}" for="switch{{$item->id}}"> {{  ($item->status == 1 ? 'Aktif' : 'Nonaktif') }}</label>
                             </div>
                         </form>
                     </td>
@@ -146,50 +145,10 @@
 
 @push('script')
 <script>
+    var data = <?php echo json_encode($list)?>;
+
     $(document).ready(function () {
         $('.dropify').dropify();
-
-        var status = $('input[name=status]').val();
-
-        var statusLabel =  $('#form-status').find('label');
-
-        if (status == 1){
-            statusLabel.text("Aktif");
-        } else {
-            statusLabel.text("Nonaktif");
-        }
-
-        $('#form-status').find('input[type=checkbox]').on('change', function() {
-            if (statusLabel.text() === "Aktif") {
-                statusLabel.text("Nonaktif");
-                status -= 1;
-            } else {
-                statusLabel.text("Aktif");
-                $(this).attr('checked');
-                status += 1;
-            }
-
-            let statusId = document.getElementById("itemId").value;
-
-            //post data
-            $.ajax({
-                url: "/admin/bengkel/status/" + statusId,
-                type: "POST",
-                async: false,
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "status": status,
-                }
-            })
-            .done(function(res, xhr, meta) {
-                console.log('succcess');
-            })
-            .fail(function(res, error) {
-                console.error(res.responseJSON.message, 'Gagal')
-            })
-            .always(function() { });
-        });
 
         $('.btn-simpan').click(function () {
             $.blockUI({
@@ -207,6 +166,13 @@
             });
         });
     });
+
+    function submitStatus(id){
+        var result = confirm("Aktifkan bengkel?");
+        if (result) {
+            $("#form-status"+id).submit();
+        }
+    }
 
     var map;
     var marker;

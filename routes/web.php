@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/form-pendaftaran', function () {
+    return view('form-pendaftaran');
+});
+
 Route::post('/', function (Request $request) {
     $search = \App\Models\Bengkel::select([
             'id',

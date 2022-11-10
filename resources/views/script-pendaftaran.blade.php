@@ -4,7 +4,6 @@
 
     let map = null;
     let myMarker = null;
-    let myCircle = null;
     let bengkelMarkers = null;
 
     // map function
@@ -23,15 +22,6 @@
             styles: styleMap,
         };
 
-        // circle
-        myCircle = new google.maps.Circle({
-            center: myCenter,
-            radius: 500,
-            strokeColor: "rgba(0,0,0,0)",
-            fillColor: "#019444",
-            fillOpacity: 0.2
-        });
-
         // marker
         myMarker = new google.maps.Marker({
             position: myCenter,
@@ -48,23 +38,11 @@
                 myMarker.setMap(null);
             }
 
-            if (myCircle && myCircle.setMap) {
-                myCircle.setMap(null);
-            }
 
             myMarker = new google.maps.Marker({
-              position: mapsMouseEvent.latLng,
-              map: map,
-              icon: './images/pin.svg',
-            });
-
-            myCircle = new google.maps.Circle({
-                center: mapsMouseEvent.latLng,
-                radius: 500,
+                position: mapsMouseEvent.latLng,
                 map: map,
-                strokeColor: "rgba(0,0,0,0)",
-                fillColor: "#019444",
-                fillOpacity: 0.2
+                icon: './images/pin.svg',
             });
 
             node = mapsMouseEvent.latLng.toJSON()
@@ -78,11 +56,10 @@
 
         // use methods
         myMarker.setMap(map);
-        myCircle.setMap(map);
     }
 
-     // style map
-     const styleMap = [{
+        // style map
+        const styleMap = [{
             "featureType": "poi.attraction",
             "elementType": "labels.icon",
             "stylers": [{

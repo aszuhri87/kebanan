@@ -190,7 +190,7 @@
             <h1 class="cta-header">Belum Terdaftar di KEBANAN?</h1>
             <p class="cta-text">Daftarkan bengkel tambal ban anda bersama KEBANAN untuk mempemudah masyarakat yang
                 mencari tambal ban disekitar lokasi mereka.</p>
-            <button class="button-white">Daftar Sekarang</button>
+            <a class="btn btn-success button-white" href="/form-pendaftaran">Daftar Sekarang</a>
         </div>
     </div>
 

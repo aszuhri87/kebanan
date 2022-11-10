@@ -26,9 +26,9 @@
             <div>
                 <ul class="d-flex header-navigation">
                     <li><a href="/">Home</a></li>
-                    <li><a href="#findService">Solution</a></li>
-                    <li><a href="#solution">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/#findService">Solution</a></li>
+                    <li><a href="/#solution">About</a></li>
+                    <li><a href="/#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -86,11 +86,11 @@
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">Latitude</label>
-                <input type="text" name="latitude" id="latitude" class="form-control" />
+                <input type="text" name="latitude" id="latitude" class="form-control" readonly />
             </div>
             <div class="col mb-4">
                 <label class="form-label">Longitude </label>
-                <input type="text" name="longitude" id="longitude" class="form-control" />
+                <input type="text" name="longitude" id="longitude" class="form-control" readonly />
             </div>
         </div>
 
@@ -183,16 +183,16 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#findService-mobile">Solution</a>
+                            <a class="nav-link" href="/#findService-mobile">Solution</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#solution">About</a>
+                            <a class="nav-link" href="/#solution">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
+                            <a class="nav-link" href="/#contact">Contact</a>
                         </li>
                     </ul>
                 </div>

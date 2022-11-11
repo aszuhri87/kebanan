@@ -135,9 +135,11 @@
     <!-- footer -->
     <div class="container d-flex align-items-baseline mb-4 gap-5 footer">
         <div class="col">
+            <img src="images/ust.png" alt="Kebanan Logo" width="50px" />
             <img src="images/logo-kebanan.svg" alt="Kebanan Logo" width="150px" />
-            <p class="footer-text_black">We provide you with the solution you need for your emergency situation at
-                ease. Finding and contact faster than before.</p>
+            <p class="footer-text_black">KEBANAN merupakan karya mahasiswa Universitas Sarjanawiyata Tamansiswa hasil
+                kejuaraan Program Inovasi Wirausaha Digital Mahasiswa Kementerian Pendidikan dan Kebudayaan Indonesia
+            </p>
         </div>
 
         <div class="col">
@@ -151,8 +153,8 @@
 
         <div class="col">
             <h1 class="footer-header_black">Info Kontak</h1>
-            <p class="footer-text_gray">Jl. Siliwangi No.32G, Area Sawah, Nogotirto, Kec. Gamping, Kabupaten Sleman,
-                Daerah Istimewa Yogyakarta 55592</p>
+            <p class="footer-text_gray">Jl. Kusumanegara No.157, Muja Muju, Kec. Umbulharjo, Kota Yogyakarta, Daerah
+                Istimewa Yogyakarta 55167</p>
             <p class="footer-text_gray">info@kebanan.id</p>
         </div>
     </div>

@@ -156,10 +156,12 @@
                         <input type="text" class="form-control ml-1" placeholder="Longitude" name="longitude" id="longitude" value="{{$bengkel->longitude}}">
                     </div>
                     <br>
-                    <label for="number-input">Foto Bengkel</label>
-                    <div class="custom-file mb-2">
+
+                    <div class="form-group form-check">
+                        <label for="number-input">Foto Bengkel</label>
                         <input type="file" name="foto_bengkel" class="dropify">
                     </div>
+
                     <div class="form-group form-check mt-3">
                         <input type="hidden" name="terima_tubles" value="{{$bengkel->terima_tubles}}"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value" {{  ($bengkel->terima_tubles == 1 ? ' checked' : '') }}>
                         <label for="terima_tubles" class="form-check-label">Terima Tubles</label>

@@ -102,34 +102,37 @@
                         <input type="text" class="form-control ml-1" placeholder="Longitude" name="longitude" id="longitude">
                     </div>
                     <br>
-                    <label for="number-input">Foto Bengkel</label>
-                    <div class="custom-file mb-2">
-                        <input type="file" name="foto_bengkel" class="dropify">
-                    </div>
-                    <div class="form-group form-check mt-3">
-                        <input type="hidden" name="terima_tubles" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
-                        <label for="terima_tubles" class="form-check-label" for="terima_tubles">Terima Tubles</label>
-                    </div>
 
-                    <div class="form-group form-check">
-                        <input type="hidden" name="terima_non_tubles" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
-                        <label for="terima_non_tubles" class="form-check-label" for="terima_non_tubles">Terima non Tubles</label>
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="hidden" name="terima_panggilan" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
-                        <label for="terima_panggilan" class="form-check-label" for="terima_panggilan">Terima Panggilan</label>
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="hidden" name="terima_motor" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
-                        <label for="terima_motor" class="form-check-label" for="terima_motor">Terima Motor</label>
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="hidden" name="terima_mobil" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
-                        <label for="terima_mobil" class="form-check-label" for="terima_mobil">Terima Mobil</label>
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="hidden" name="terima_kendaraan_berat" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
-                        <label for="terima_kendaraan_berat" class="form-check-label" for="terima_kendaraan_berat">Terima Kendaraan Berat</label>
+                    <div class="d-flex flex-column">
+                        <div class="form-group">
+                            <label for="number-input">Foto Bengkel</label>
+                            <input type="file" name="foto_bengkel" height="400" class="dropify">
+                        </div>
+
+                        <div class="form-group form-check mt-3">
+                            <input type="hidden" name="terima_tubles" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                            <label for="terima_tubles" class="form-check-label" for="terima_tubles">Terima Tubles</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="hidden" name="terima_non_tubles" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                            <label for="terima_non_tubles" class="form-check-label" for="terima_non_tubles">Terima non Tubles</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="hidden" name="terima_panggilan" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                            <label for="terima_panggilan" class="form-check-label" for="terima_panggilan">Terima Panggilan</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="hidden" name="terima_motor" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                            <label for="terima_motor" class="form-check-label" for="terima_motor">Terima Motor</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="hidden" name="terima_mobil" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                            <label for="terima_mobil" class="form-check-label" for="terima_mobil">Terima Mobil</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="hidden" name="terima_kendaraan_berat" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                            <label for="terima_kendaraan_berat" class="form-check-label" for="terima_kendaraan_berat">Terima Kendaraan Berat</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

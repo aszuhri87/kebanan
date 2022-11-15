@@ -42,37 +42,42 @@
     </div>
 
     <!-- form -->
-    <form class="container container-form_mobile w-75 mx-auto mt-5" id="form-daftar"  action="{{url('daftar-bengkel')}}" method="post" enctype="multipart/form-data">
+    <form class="container container-form_mobile w-75 mx-auto mt-5" id="form-daftar"
+        action="{{ url('daftar-bengkel') }}" method="post" enctype="multipart/form-data">
         @csrf
-        @if(session('message'))
+        @if (session('message'))
             <div class="alert alert-success mt-5" role="alert">
-                    {{session('message')}}
+                {{ session('message') }}
             </div>
         @endif
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">Nama Bengkel <span class="text-danger">*</span> </label>
-                <input type="text" name="nama_bengkel" class="form-control" placeholder="Masukkan nama bengkel..." required />
+                <input type="text" name="nama_bengkel" class="form-control" placeholder="Masukkan nama bengkel..."
+                    required />
             </div>
             <div class="col mb-4">
                 <label class="form-label">Nama Pemilik <span class="text-danger">*</span> </label>
-                <input type="text" name="nama_pemilik" class="form-control" placeholder="Masukan nama pemilik..." required />
+                <input type="text" name="nama_pemilik" class="form-control" placeholder="Masukan nama pemilik..."
+                    required />
             </div>
         </div>
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">No HP <span class="text-danger">*</span> </label>
-                <input type="text" name="nomor_hp" class="form-control" placeholder="Masukan no HP..." required />
+                <input type="number" name="nomor_hp" class="form-control" placeholder="Masukan no HP..." required />
             </div>
             <div class="col mb-4">
                 <label class="form-label">Keterangan <span class="text-danger">*</span> </label>
-                <input type="text" name="keterangan" class="form-control" placeholder="Masukan keterangan bengkel anda..." required />
+                <input type="text" name="keterangan" class="form-control"
+                    placeholder="Masukan keterangan bengkel anda..." required />
             </div>
         </div>
         <div class="row gap-5">
             <div class="col mb-4">
                 <label class="form-label">Alamat <span class="text-danger">*</span> </label>
-                <input type="text" name="alamat" class="form-control" placeholder="Masukan alamat bengkel anda..." required />
+                <input type="text" name="alamat" class="form-control" placeholder="Masukan alamat bengkel anda..."
+                    required />
             </div>
         </div>
 
@@ -103,27 +108,39 @@
                 <label class="form-label">Jenis Layanan <span class="text-danger">*</span> </label>
                 <div class="form-check">
                     <div class="d-flex align-items-end mb-2">
-                        <input type="hidden" name="terima_tubles" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                        <input type="hidden" name="terima_tubles" value="0"><input type="checkbox"
+                            class="form-check-input"
+                            onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Tubles</label>
                     </div>
                     <div class="d-flex align-items-end mb-2">
-                        <input type="hidden" name="terima_non_tubles" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                        <input type="hidden" name="terima_non_tubles" value="0"><input type="checkbox"
+                            class="form-check-input"
+                            onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima non Tubles</label>
                     </div>
                     <div class="d-flex align-items-end mb-2">
-                        <input type="hidden" name="terima_panggilan" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                        <input type="hidden" name="terima_panggilan" value="0"><input type="checkbox"
+                            class="form-check-input"
+                            onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Panggilan</label>
                     </div>
                     <div class="d-flex align-items-end mb-2">
-                        <input type="hidden" name="terima_motor" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                        <input type="hidden" name="terima_motor" value="0"><input type="checkbox"
+                            class="form-check-input"
+                            onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Motor</label>
                     </div>
                     <div class="d-flex align-items-end mb-2">
-                        <input type="hidden" name="terima_mobil" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                        <input type="hidden" name="terima_mobil" value="0"><input type="checkbox"
+                            class="form-check-input"
+                            onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Mobil</label>
                     </div>
                     <div class="d-flex align-items-end">
-                        <input type="hidden" name="terima_kendaraan_berat" value="0"><input type="checkbox" class="form-check-input" onclick="this.previousSibling.value=1-this.previousSibling.value">
+                        <input type="hidden" name="terima_kendaraan_berat" value="0"><input type="checkbox"
+                            class="form-check-input"
+                            onclick="this.previousSibling.value=1-this.previousSibling.value">
                         <label class="form-check-label">Terima Kendaraan Berat</label>
                     </div>
                 </div>
@@ -134,7 +151,7 @@
 
     <!-- footer -->
     <div class="container d-flex align-items-baseline mb-4 gap-5 footer">
-        <div class="col">
+        <div class="col footer-mobile-logo">
             <img src="images/ust.png" alt="Kebanan Logo" width="50px" />
             <img src="images/logo-kebanan.svg" alt="Kebanan Logo" width="150px" />
             <p class="footer-text_black">KEBANAN merupakan karya mahasiswa Universitas Sarjanawiyata Tamansiswa hasil
@@ -142,7 +159,7 @@
             </p>
         </div>
 
-        <div class="col">
+        <div class="col footer-mobile-link">
             <h1 class="footer-header_black">Link</h1>
             <ul class="footer-text_gray">
                 <li><a href="#solution">Tentang Kami</a></li>
@@ -221,4 +238,3 @@
 </body>
 
 </html>
-

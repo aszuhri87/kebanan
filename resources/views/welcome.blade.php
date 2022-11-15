@@ -292,12 +292,13 @@
         <h1 class="questions-header">Ada pertanyaan tentang Kebanan?, Hubungi kami!</h1>
         <p class="questions-text">Jika pertanyaan anda belum terjawab, jangan ragu untuk menghubungi kami dengan
             menekan tombol dibawah ini.</p>
-        <a href="https://api.whatsapp.com/send?phone=6288980588754&text=Halo kebanan.id, saya inggin bertanya." target="_blank" class="btn btn-success button-white mx-auto questions-button">Hubungi Sekarang</a>
+        <a href="https://api.whatsapp.com/send?phone=6288980588754&text=Halo kebanan.id, saya inggin bertanya."
+            target="_blank" class="btn btn-success button-white mx-auto questions-button">Hubungi Sekarang</a>
     </div>
 
     <!-- footer -->
     <div class="container d-flex align-items-baseline mb-4 gap-5 footer">
-        <div class="col">
+        <div class="col footer-mobile-logo">
             <img src="images/ust.png" alt="Kebanan Logo" width="50px" />
             <img src="images/logo-kebanan.svg" alt="Kebanan Logo" width="150px" />
             <p class="footer-text_black">KEBANAN merupakan karya mahasiswa Universitas Sarjanawiyata Tamansiswa hasil
@@ -305,7 +306,7 @@
             </p>
         </div>
 
-        <div class="col">
+        <div class="col footer-mobile-link">
             <h1 class="footer-header_black">Link</h1>
             <ul class="footer-text_gray">
                 <li><a href="#solution">Tentang Kami</a></li>

@@ -800,7 +800,28 @@ body {
 
     /* footer */
     .footer {
+        padding: 0 20px 60px 20px;
+        height: 100%;
+    }
+
+    .footer-mobile-logo {
         display: none !important;
+    }
+
+    .footer-mobile-link {
+        display: none !important;
+    }
+
+    .footer-header_black {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .footer-text_gray {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 30px;
     }
 
     /* copyright */

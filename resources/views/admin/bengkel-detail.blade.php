@@ -24,7 +24,7 @@
             <table class="table mb-0 table-bordered" width="100%">
                 <tbody>
                     <tr>
-                        <th scope="col">Nama Bengkel</th>
+                        <th scope="col" width="20%">Nama Bengkel</th>
                         <td scope="col">{{ $bengkel->nama_bengkel }}</td>
                     </tr>
                     <tr>
@@ -44,7 +44,7 @@
                     </tr>
                     <tr>
                         <th scope="col">Foto</th>
-                        <td scope="col"> <img src="{{ asset($bengkel->foto_bengkel)}}"></td>
+                        <td scope="col"> @if(!$bengkel->foto_bengkel) <img class="d-flex" src="{{ asset('images/img-placeholder.svg')}}" style="height: 100px; width: 100px;"> @else <img src="{{ asset($bengkel->foto_bengkel)}}"> @endif</td>
                     </tr>
                     <tr>
                         <th scope="col">Titik Lokasi</th>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="form-group">
                         <label for="number-input">Nomor Hp</label>
-                        <input type="text" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp" value="{{$bengkel->nomor_hp}}">
+                        <input type="number" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" max="15" id="nomor_hp" value="{{$bengkel->nomor_hp}}">
                     </div>
                     <div class="form-group">
                         <div class="card-body">

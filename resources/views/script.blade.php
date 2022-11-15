@@ -260,7 +260,7 @@
                 let infowindow = new google.maps.InfoWindow({
                     content: `<div class="container d-flex justify-content-around modal-container">
                 <div>
-                <img src="${item.foto_bengkel}" class="d-block modal-image"/>
+                    ${!item.foto_bengkel ? `<img class="d-block modal-image-null" src="images/img-placeholder.svg">` : ` <img src="${item.foto_bengkel}" class="d-block modal-image"/>` }
                 <button onclick="chatWhatsapp(${item.nomor_hp})" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
                 <button onclick="callPhone(${item.nomor_hp})" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
                 </div>

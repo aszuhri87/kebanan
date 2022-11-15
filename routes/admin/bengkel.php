@@ -18,6 +18,7 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
     Route::get('/bengkel', function () {
         $list = \App\Models\Bengkel::select(['*'])
         ->whereNull('deleted_at')
+        ->orderBy('created_at', 'desc')
         ->paginate(10);
 
         return view('admin/bengkel', compact('list'));

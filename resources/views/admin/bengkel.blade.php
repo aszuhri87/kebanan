@@ -71,16 +71,16 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="number-input">Nama Bengkel</label>
-                        <input type="text" required class="form-control" placeholder="Nama Bengkel" name="nama_bengkel" id="nama_bengkel">
+                        <input type="text" required class="form-control" placeholder="Nama Bengkel" name="nama_bengkel" id="nama_bengkel" required>
                     </div>
                     <div class="form-group">
                         <label for="number-input">Nama Pemilik</label>
-                        <input type="text" required class="form-control" placeholder="Nama Pemilik" name="nama_pemilik" id="nama_pemilik">
+                        <input type="text" required class="form-control" placeholder="Nama Pemilik" name="nama_pemilik" id="nama_pemilik" required>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <textarea name="alamat" required class="form-control" placeholder="Tulis alamat lengkap ..." id="alamat"
-                            rows="3"></textarea>
+                            rows="3" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Keterangan</label>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <label for="number-input">Nomor Hp</label>
-                        <input type="text" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp">
+                        <input type="number" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp" max="15" required>
                     </div>
                     <div class="form-group">
                         <div class="card-body">

@@ -119,8 +119,7 @@
                     </div>
             </div>
 
-            <button onclick="searchBengkel()" type="button"
-                class="btn btn-success btn-search button-green mx-auto mt-5">Cari Bengkel</button>
+            <button onclick="searchBengkel()" type="button" class="btn btn-success btn-search button-green mx-auto mt-5">Cari Bengkel</button>
             </form>
         </div>
     </div>
@@ -169,9 +168,7 @@
                 </div>
             </div>
 
-            <button onclick="searchBengkel()"
-                class="button-green d-flex justify-content-between align-items-center float-end mt-3"><img
-                    src="images/find.svg" />Cari Tambal Ban</button>
+            <button onclick="searchBengkel()" type="button" class="btn btn-success btn-search button-green mx-auto">Cari Bengkel</button>
         </div>
     </div>
 

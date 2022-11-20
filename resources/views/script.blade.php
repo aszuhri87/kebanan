@@ -6,10 +6,13 @@
     let myMarker = null;
     let myCircle = null;
     let bengkelMarkers = null;
+    let myCenter = null;
 
     // map function
     function myMap() {
-        let myCenter = new google.maps.LatLng(-7.758046187031497, 110.32821718384228);
+        myLocation()
+
+        myCenter = new google.maps.LatLng(-7.758046187031497, 110.32821718384228);
 
         // map properties
         let mapProp = {
@@ -128,7 +131,7 @@
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
 
-        let myCenter = new google.maps.LatLng(lat, lng);
+        myCenter = new google.maps.LatLng(lat, lng);
 
         // map properties
         let mapProp = {
@@ -164,6 +167,7 @@
         // use methods
         myMarker.setMap(map);
         myCircle.setMap(map);
+        map.setCenter(myCenter)
     }
 
     // search bengkel
@@ -193,7 +197,7 @@
         .done(function(res, xhr, meta) {
             locationBengkel = res.data;
 
-            console.log(locationBengkel);
+            showAllBengkel(makerLat, makerLng);
         })
         .fail(function(res, error) {
             console.error(res.responseJSON.message, 'Gagal')
@@ -204,31 +208,18 @@
         let tipeKendaraanMobile = document.getElementById("tipeKendaraanMobile").value;
         let tipeBanMobile = document.getElementById("tipeBanMobile").value;
         let jenisServiceMobile = document.getElementById("jenisServiceMobile").value;
-
-        console.log(tipeKendaraan);
-        console.log(tipeBan);
-        console.log(jenisService);
-        console.log(tipeKendaraanMobile);
-        console.log(tipeBanMobile);
-        console.log(jenisServiceMobile);
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showAllBengkel);
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
     }
 
-    function showAllBengkel(position) {
+    function showAllBengkel(positionLat, positionLng) {
 
         if (bengkelMarkers && bengkelMarkers.setMap) {
             bengkelMarkers.setMap(null);
         }
 
-        let lat = position.coords.latitude;
-        let lng = position.coords.longitude;
+        let lat = positionLat;
+        let lng = positionLng;
 
-        let myCenter = new google.maps.LatLng(lat, lng);
+        myCenter = new google.maps.LatLng(lat, lng);
 
         // map properties
         let mapProp = {
@@ -242,10 +233,7 @@
             styles: styleMap,
         };
 
-        // ALL BENGKEL
-        if (Array.isArray(locationBengkel)){
-            // make marker on map from locationBengkel
-            locationBengkel.forEach((item) => {
+        locationBengkel.forEach((item) => {
 
             // calculate radius
             if (item.radius <= 2000){
@@ -259,81 +247,75 @@
                 // info window
                 let infowindow = new google.maps.InfoWindow({
                     content: `<div class="container d-flex justify-content-around modal-container">
-                <div>
-                    ${!item.foto_bengkel ? `<img class="d-block modal-image-null" src="images/img-placeholder.svg">` : ` <img src="${item.foto_bengkel}" class="d-block modal-image"/>` }
-                <button onclick="chatWhatsapp(${item.nomor_hp})" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
-                <button onclick="callPhone(${item.nomor_hp})" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
-                </div>
+                        <div>
+                            ${!item.foto_bengkel ? `<img class="d-block modal-image-null" src="images/img-placeholder.svg">` : ` <img src="${item.foto_bengkel}" class="d-block modal-image"/>` }
+                        <button onclick="chatWhatsapp(${item.nomor_hp})" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
+                        <button onclick="callPhone(${item.nomor_hp})" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
+                        </div>
 
-                <div>
-                <h1 class="modal-header">${item.namaBengkel}</h1>
-                <p class="modal-text">${item.alamatBengkel}</p>
-                <ul class="modal-text_gray">
-                ${item.tubles == 1 ? `<li>
-                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-                <span>Tubles</span>
-                </li>` : `<li>
-                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-                <span>Tubles</span>
-                </li>` }
-                ${item.nonTubles == 1 ? `<li>
-                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-                <span>Non-Tubles</span>
-                </li>` : `<li>
-                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-                <span>Non-Tubles</span>
-                </li>` }
-                ${item.terima_motor == 1 ? `<li>
-                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-                <span>Motor</span>
-                </li>` : `<li>
-                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-                <span>Motor</span>
-                </li>` }
-                ${item.terima_mobil == 1 ? `<li>
-                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-                <span>Mobil</span>
-                </li>` : `<li>
-                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-                <span>Mobil</span>
-                </li>` }
-                ${item.repairOnDelivery == 1 ? `<li>
-                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-                <span>Repair On Delivery</span>
-                </li>` : `<li>
-                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-                <span>Repair On Delivery</span>
-                </li>`}
-                ${item.terima_kendaraan_berat == 1 ? `<li>
-                <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
-                <span>Terima Kendaraan Berat</span>
-                </li>` : `<li>
-                <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
-                <span>Terima Kendaraan Berat</span>
-                </li>`}
-                </ul>
-                </div>
-                </div>`
-                    });
+                        <div>
+                        <h1 class="modal-header">${item.namaBengkel}</h1>
+                        <p class="modal-text">${item.alamatBengkel}</p>
+                        <ul class="modal-text_gray">
+                        ${item.tubles == 1 ? `<li>
+                        <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                        <span>Tubles</span>
+                        </li>` : `<li>
+                        <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                        <span>Tubles</span>
+                        </li>` }
+                        ${item.nonTubles == 1 ? `<li>
+                        <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                        <span>Non-Tubles</span>
+                        </li>` : `<li>
+                        <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                        <span>Non-Tubles</span>
+                        </li>` }
+                        ${item.terima_motor == 1 ? `<li>
+                        <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                        <span>Motor</span>
+                        </li>` : `<li>
+                        <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                        <span>Motor</span>
+                        </li>` }
+                        ${item.terima_mobil == 1 ? `<li>
+                        <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                        <span>Mobil</span>
+                        </li>` : `<li>
+                        <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                        <span>Mobil</span>
+                        </li>` }
+                        ${item.repairOnDelivery == 1 ? `<li>
+                        <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                        <span>Repair On Delivery</span>
+                        </li>` : `<li>
+                        <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                        <span>Repair On Delivery</span>
+                        </li>`}
+                        ${item.terima_kendaraan_berat == 1 ? `<li>
+                        <img class="modal-icon" src="images/checklist.svg" alt="Icon 1" />
+                        <span>Terima Kendaraan Berat</span>
+                        </li>` : `<li>
+                        <img class="modal-icon" src="images/un-checklist.svg" alt="Icon 1" />
+                        <span>Terima Kendaraan Berat</span>
+                        </li>`}
+                        </ul>
+                        </div>
+                        </div>`
+                });
 
-                    // event listener
-                    google.maps.event.addListener(bengkelMarkers, 'click', function () {
-                        infowindow.open(map, bengkelMarkers);
-                    });
+                // event listener
+                google.maps.event.addListener(bengkelMarkers, 'click', function () {
+                    infowindow.open(map, bengkelMarkers);
+                });
 
                     bengkelMarkers.setMap(map);
+            } else {
+                if (bengkelMarkers && bengkelMarkers.setMap) {
+                    bengkelMarkers.setMap(null);
                 }
-                else {
-                    if (bengkelMarkers && bengkelMarkers.setMap) {
-                        bengkelMarkers.setMap(null);
-                    }
-                }
-            })
-        } else {
-            if (bengkelMarkers && bengkelMarkers.setMap) {
-                bengkelMarkers.setMap(null);
             }
-        }
+        })
     }
 
     function chatWhatsapp(phone) {

@@ -50,6 +50,12 @@
                 {{ session('message') }}
             </div>
         @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger mt-5" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">Nama Bengkel <span class="text-danger">*</span> </label>
@@ -67,7 +73,7 @@
                 <label class="form-label">No HP <span class="text-danger">*</span> </label>
                 <div class="input-group">
                     <span class="input-group-text form-control form-number">+62</span>
-                    <input type="number" name="nomor_hp" class="form-control form-number_input" placeholder="Masukan no HP..." required />
+                    <input type="number" name="nomor_hp" class="form-control form-number_input" placeholder="Masukan no HP..." />
                 </div>
             </div>
             <div class="col mb-4">

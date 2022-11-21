@@ -2,6 +2,18 @@
 
 @section('content')
 
+@if (session('message'))
+<div class="alert alert-success mt-5" role="alert">
+    {{ session('message') }}
+</div>
+@endif
+
+@if (session('error'))
+<div class="alert alert-danger mt-5" role="alert">
+    {{ session('error') }}
+</div>
+@endif
+
 <div class="card w-100 mb-5">
     <div class="card-body">
         <div class="d-flex justify-content-between mb-3">
@@ -89,7 +101,8 @@
                     </div>
                     <div class="form-group">
                         <label for="number-input">Nomor Hp</label>
-                        <input type="number" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp">
+                        <span class="input-group-text form-control form-number">+62</span>
+                        <input type="number" name="nomor_hp" class="form-control form-number_input" placeholder="Masukan no HP..." />
                     </div>
                     <div class="form-group">
                         <div class="card-body">

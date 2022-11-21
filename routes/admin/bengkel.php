@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
     Route::get('/bengkel', function () {
-        $list = \App\Models\Bengkel::select(['*'])
+        $list = \App\Models\Bengkel::select([
+            '*',
+            \DB::raw("CASE WHEN nomor_hp IS NULL THEN '-' ELSE nomor_hp END as nomor_hp"),
+        ])
         ->whereNull('deleted_at')
         ->orderBy('created_at', 'desc')
         ->paginate(10);
@@ -35,12 +38,23 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
             $foto = $request->foto_bengkel;
         }
 
-        $no = substr($request->nomor_hp, 0, 2);
+        if ($request->nomor_hp) {
+            $no = substr($request->nomor_hp, 0, 2);
+            $no2 = substr($request->nomor_hp, 0, 1);
 
-        if ($no != '62') {
-            $no_hp = substr_replace($request->nomor_hp, '62', 0, 1);
+            if ($no != '62') {
+                if ($no == '08') {
+                    $no_hp = substr_replace($request->nomor_hp, '62', 0, 1);
+                } elseif ($no2 == '8') {
+                    $no_hp = substr_replace($request->nomor_hp, '62', 0, 0);
+                } else {
+                    return Redirect::back()->with('error', 'Nomor HP Tidak Valid!');
+                }
+            } else {
+                $no_hp = $request->nomor_hp;
+            }
         } else {
-            $no_hp = $request->nomor_hp;
+            $no_hp = null;
         }
 
         \App\Models\Bengkel::create([
@@ -61,11 +75,14 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
             'terima_kendaraan_berat' => $request->terima_kendaraan_berat,
         ]);
 
-        return Redirect::back();
+        return Redirect::back()->with('message', 'Berhasil Menambah Bengkel!');
     });
 
     Route::get('bengkel/{id}', function (Request $request, $id) {
-        $bengkel = \App\Models\Bengkel::select(['*'])
+        $bengkel = \App\Models\Bengkel::select([
+                '*',
+                \DB::raw("CASE WHEN nomor_hp IS NULL THEN '-' ELSE nomor_hp END as nomor_hp"),
+            ])
             ->where('id', $id)
             ->whereNull('deleted_at')
             ->first();
@@ -84,12 +101,23 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
             $foto = null;
         }
 
-        $no = substr($request->nomor_hp, 0, 2);
+        if ($request->nomor_hp) {
+            $no = substr($request->nomor_hp, 0, 2);
+            $no2 = substr($request->nomor_hp, 0, 1);
 
-        if ($no != '62') {
-            $no_hp = substr_replace($request->nomor_hp, '62', 0, 1);
+            if ($no != '62') {
+                if ($no == '08') {
+                    $no_hp = substr_replace($request->nomor_hp, '62', 0, 1);
+                } elseif ($no2 == '8') {
+                    $no_hp = substr_replace($request->nomor_hp, '62', 0, 0);
+                } else {
+                    return Redirect::back()->with('error', 'Nomor HP Tidak Valid!');
+                }
+            } else {
+                $no_hp = $request->nomor_hp;
+            }
         } else {
-            $no_hp = $request->nomor_hp;
+            $no_hp = null;
         }
 
         $bengkel = \App\Models\Bengkel::find($id);
@@ -111,7 +139,7 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
             'terima_kendaraan_berat' => $request->terima_kendaraan_berat,
         ]);
 
-        return Redirect::back();
+        return Redirect::back()->with('message', 'Berhasil Mengedit Bengkel!');
     });
 
     Route::get('bengkel/delete/{id}', function (Request $request, $id) {

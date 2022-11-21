@@ -10,6 +10,19 @@
 @endpush
 
 @section('content')
+
+@if (session('message'))
+    <div class="alert alert-success mt-5" role="alert">
+        {{ session('message') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger mt-5" role="alert">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="d-flex justify-content-between align-items-center mb-3">
     <a href="{{url('admin/bengkel')}}" class="btn btn-danger m-0">Kembali</a>
     <div>

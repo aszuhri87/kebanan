@@ -111,12 +111,23 @@ Route::post('daftar-bengkel', function (Request $request) {
         $foto = $request->foto_bengkel;
     }
 
-    $no = substr($request->nomor_hp, 0, 2);
+    if ($request->nomor_hp) {
+        $no = substr($request->nomor_hp, 0, 2);
+        $no2 = substr($request->nomor_hp, 0, 1);
 
-    if ($no != '62') {
-        $no_hp = substr_replace($request->nomor_hp, '62', 0, 1);
+        if ($no != '62') {
+            if ($no == '08') {
+                $no_hp = substr_replace($request->nomor_hp, '62', 0, 1);
+            } elseif ($no2 == '8') {
+                $no_hp = substr_replace($request->nomor_hp, '62', 0, 0);
+            } else {
+                return Redirect::back()->with('error', 'Nomor HP Tidak Valid!');
+            }
+        } else {
+            $no_hp = $request->nomor_hp;
+        }
     } else {
-        $no_hp = $request->nomor_hp;
+        $no_hp = null;
     }
 
     \App\Models\Bengkel::create([

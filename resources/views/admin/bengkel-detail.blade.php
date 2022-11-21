@@ -273,7 +273,6 @@
             marker2 = new google.maps.Marker({
               position: mapsMouseEvent.latLng,
               map: map2,
-              animation: google.maps.Animation.DROP,
             });
 
             node = mapsMouseEvent.latLng.toJSON()

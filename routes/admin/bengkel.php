@@ -35,12 +35,20 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
             $foto = $request->foto_bengkel;
         }
 
+        $no = substr($request->nomor_hp, 0, 2);
+
+        if ($no != '62') {
+            $no_hp = substr_replace($request->nomor_hp, '62', 0, 1);
+        } else {
+            $no_hp = $request->nomor_hp;
+        }
+
         \App\Models\Bengkel::create([
             'nama_bengkel' => $request->nama_bengkel,
             'nama_pemilik' => $request->nama_pemilik,
             'alamat' => $request->alamat,
             'keterangan' => $request->keterangan,
-            'nomor_hp' => $request->nomor_hp,
+            'nomor_hp' => $no_hp,
             'longitude' => $request->longitude,
             'latitude' => $request->latitude,
             'foto_bengkel' => $foto,
@@ -76,13 +84,21 @@ Route::prefix('admin')->middleware(['admin-handling'])->group(function () {
             $foto = null;
         }
 
+        $no = substr($request->nomor_hp, 0, 2);
+
+        if ($no != '62') {
+            $no_hp = substr_replace($request->nomor_hp, '62', 0, 1);
+        } else {
+            $no_hp = $request->nomor_hp;
+        }
+
         $bengkel = \App\Models\Bengkel::find($id);
         $bengkel->update([
             'nama_bengkel' => $request->nama_bengkel,
             'nama_pemilik' => $request->nama_pemilik,
             'alamat' => $request->alamat,
             'keterangan' => $request->keterangan,
-            'nomor_hp' => $request->nomor_hp,
+            'nomor_hp' => $no_hp,
             'longitude' => $request->longitude,
             'latitude' => $request->latitude,
             'foto_bengkel' => $foto ? $foto : $bengkel->foto_bengkel,

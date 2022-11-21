@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <label for="number-input">Nomor Hp</label>
-                        <input type="number" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp">
+                        <input type="number" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp" min="10" max="15">
                     </div>
                     <div class="form-group">
                         <div class="card-body">
@@ -206,7 +206,6 @@
             marker = new google.maps.Marker({
               position: mapsMouseEvent.latLng,
               map: map,
-              animation: google.maps.Animation.DROP,
             });
 
             node = mapsMouseEvent.latLng.toJSON()

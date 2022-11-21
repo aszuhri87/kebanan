@@ -65,7 +65,10 @@
         <div class="row gap-5 form-row_mobile">
             <div class="col mb-4">
                 <label class="form-label">No HP <span class="text-danger">*</span> </label>
-                <input type="number" name="nomor_hp" class="form-control" placeholder="Masukan no HP..." required />
+                <div class="input-group">
+                    <span class="input-group-text form-control form-number">+62</span>
+                    <input type="number" name="nomor_hp" class="form-control form-number_input" placeholder="Masukan no HP..." required />
+                </div>
             </div>
             <div class="col mb-4">
                 <label class="form-label">Keterangan <span class="text-danger">*</span> </label>
@@ -162,9 +165,9 @@
         <div class="col footer-mobile-link">
             <h1 class="footer-header_black">Link</h1>
             <ul class="footer-text_gray">
-                <li><a href="#solution">Tentang Kami</a></li>
-                <li><a href="#contact">Hubungi Kami</a></li>
-                <li><a href="#">Syarat & Ketentuan</a></li>
+                <li><a href="/#solution">Tentang Kami</a></li>
+                <li><a href="/#contact">Hubungi Kami</a></li>
+                <li><a href="/#">Syarat & Ketentuan</a></li>
             </ul>
         </div>
 

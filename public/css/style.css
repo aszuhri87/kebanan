@@ -532,6 +532,14 @@ body {
     margin-left: 8px;
 }
 
+.form-number {
+    max-width: fit-content;
+}
+
+.form-number_input {
+    padding: 12px 10px;
+}
+
 .dropify {
     width: 450px;
     height: 250px;
@@ -899,6 +907,16 @@ body {
     .form-check-label {
         font-size: 12px;
         line-height: 20px;
+    }
+
+    .form-number {
+        max-width: fit-content;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .form-number_input {
+        padding: 12px 10px;
     }
 
     .dropify {

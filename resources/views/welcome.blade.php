@@ -289,7 +289,7 @@
         <h1 class="questions-header">Ada pertanyaan tentang Kebanan?, Hubungi kami!</h1>
         <p class="questions-text">Jika pertanyaan anda belum terjawab, jangan ragu untuk menghubungi kami dengan
             menekan tombol dibawah ini.</p>
-        <a href="https://api.whatsapp.com/send?phone=6288980588754&text=Halo kebanan.id, saya inggin bertanya."
+        <a href="https://api.whatsapp.com/send?phone=6288980588754&text=Halo kebanan.id, saya ingin bertanya."
             target="_blank" class="btn btn-success button-white mx-auto questions-button">Hubungi Sekarang</a>
     </div>
 

@@ -143,7 +143,7 @@
                     </div>
                     <div class="form-group">
                         <label for="number-input">Nomor Hp</label>
-                        <input type="number" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" max="15" id="nomor_hp" value="{{$bengkel->nomor_hp}}">
+                        <input type="number" required class="form-control" placeholder="Nomor Hp" name="nomor_hp" id="nomor_hp" value="{{$bengkel->nomor_hp}}">
                     </div>
                     <div class="form-group">
                         <div class="card-body">

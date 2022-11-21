@@ -5,7 +5,7 @@
     let map = null;
     let myMarker = null;
     let myCircle = null;
-    let bengkelMarkers = null;
+    let bengkelMarkers = [];
     let myCenter = null;
 
     // map function
@@ -61,9 +61,11 @@
         autocompleteMobile = new google.maps.places.Autocomplete(inputMobile, options);
 
         autocompleteDesktop.addListener("place_changed", () => {
-            if (bengkelMarkers && bengkelMarkers.setMap) {
-                bengkelMarkers.setMap(null);
-            }
+                bengkelMarkers.forEach(bengkelMarker => {
+                    if (bengkelMarker && bengkelMarker.setMap) {
+                        bengkelMarker.setMap(null);
+                    }
+                });
 
             const place = autocompleteDesktop.getPlace();
             if (!place.geometry) {
@@ -116,9 +118,11 @@
 
     // find location
     function myLocation() {
-        if (bengkelMarkers && bengkelMarkers.setMap) {
-            bengkelMarkers.setMap(null);
-        }
+        bengkelMarkers.forEach(bengkelMarker => {
+            if (bengkelMarker && bengkelMarker.setMap) {
+                bengkelMarker.setMap(null);
+            }
+        });
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -212,9 +216,18 @@
 
     function showAllBengkel(positionLat, positionLng) {
 
-        if (bengkelMarkers && bengkelMarkers.setMap) {
-            bengkelMarkers.setMap(null);
-        }
+        google.maps.Map.prototype.clearMarkers = function() {
+            for(var i=0; i < this.markers.length; i++){
+                this.markers[i].setMap(null);
+            }
+            this.markers = new Array();
+        };
+
+        bengkelMarkers.forEach(bengkelMarker => {
+            if (bengkelMarker && bengkelMarker.setMap) {
+                bengkelMarker.setMap(null);
+            }
+        });
 
         let lat = positionLat;
         let lng = positionLng;
@@ -237,22 +250,13 @@
 
             // calculate radius
             if (item.radius <= 2000){
-                bengkelMarkers = new google.maps.Marker({
-                    position: new google.maps.LatLng(item.lat, item.lng),
-                    map: map,
-                    title: item.title,
-                    icon: './images/workshop.svg',
-                });
-
-                // info window
+                 // info window
                 let infowindow = new google.maps.InfoWindow({
                     content: `<div class="container d-flex justify-content-around modal-container">
-                        <div>
-                            ${!item.foto_bengkel ? `<img class="d-block modal-image-null" src="images/img-placeholder.svg">` : ` <img src="${item.foto_bengkel}" class="d-block modal-image"/>` }
-                        <button onclick="chatWhatsapp(${item.nomor_hp})" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
-                        <button onclick="callPhone(${item.nomor_hp})" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
-                        </div>
-
+                            <div> ${!item.foto_bengkel ? `<img class="d-block modal-image-null" src="images/img-placeholder.svg">` : ` <img src="${item.foto_bengkel}" class="d-block modal-image"/>` }
+                                <button onclick="chatWhatsapp(${item.nomor_hp})" class="modal-button-green mb-1 mt-2"><img src="./images/whatsapp.svg" alt="Whatsapp" width="9" /> Whatsapp</button>
+                                <button onclick="callPhone(${item.nomor_hp})" class="modal-button-white"><img src="./images/phone.svg" alt="Telephone" width="9" /> Telepon</button>
+                            </div>
                         <div>
                         <h1 class="modal-header">${item.namaBengkel}</h1>
                         <p class="modal-text">${item.alamatBengkel}</p>
@@ -301,19 +305,33 @@
                         </li>`}
                         </ul>
                         </div>
-                        </div>`
+                    </div>`
                 });
 
-                // event listener
-                google.maps.event.addListener(bengkelMarkers, 'click', function () {
-                    infowindow.open(map, bengkelMarkers);
+                let bengkelMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(item.lat, item.lng),
+                    map: map,
+                    title: item.title,
+                    icon: './images/workshop.svg',
                 });
 
-                    bengkelMarkers.setMap(map);
+                bengkelMarkers.push(bengkelMarker);
+
+                bengkelMarker.addListener("click", () => {
+                    infowindow.open({
+                        anchor: bengkelMarker,
+                        map,
+                    });
+                });
+
+                bengkelMarker.setMap(map);
+
             } else {
-                if (bengkelMarkers && bengkelMarkers.setMap) {
-                    bengkelMarkers.setMap(null);
-                }
+                bengkelMarkers.forEach(bengkelMarker => {
+                    if (bengkelMarker && bengkelMarker.setMap) {
+                        bengkelMarker.setMap(null);
+                    }
+                });
             }
         })
     }
